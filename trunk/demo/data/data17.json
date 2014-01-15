@@ -1,0 +1,12 @@
+{"total":28,"rows":[
+	{"id":"MailSender","name":"邮件发送人名称","status":"1","value":"Synjones","desc":"6"},
+	{"id":"LoginFilterExclude","name":"登录过滤不拦截地址","status":"0","value":"Synjones","desc":"6"},
+	{"id":"MailAcdesc","name":"邮箱帐号","status":"0","value":"Synjones","desc":"新增用户, 删除流水"},
+	{"id":"MailAddress","name":"邮箱","status":"1","value":"身份证中心","desc":"343"},
+	{"id":"mailPasswsord","name":"邮箱密码","status":"1","value":"9838JJ@#jkdji3JJH","desc":"767"},
+	{"id":"mailServer","name":"邮件服务器","status":"0","value":"Synjones","desc":"-"},
+	{"id":"mailValidation","name":"邮箱校验时间","status":"0","value":"Synjones","desc":"-"},
+	{"id":"validtype","name":"校验规则","status":"0","value":"Synjones","desc":"-"},
+	{"id":"dataType","name":"属性值类型","status":"0","value":"Synjones","desc":""},
+	{"id":"serverDomain","name":"iaweb域名","status":"0","value":"Synjones","desc":"-"}
+]}

@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户信息查询</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/datagrid-detailview.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$('#tt').datagrid({
+	view: detailview,
+	detailFormatter:function(index,row){  
+        return '<div id="ddv-' + index + '" style="padding:5px 0;"></div>';  
+    },
+	onExpandRow: function(index,row){  
+    $('#ddv-'+index).panel({  
+        height:180,  
+        border:false,  
+        cache:false,
+        href:'ajaxpage/' + row.number + '.html',
+        onLoad:function(){  
+            $('#tt').datagrid('fixDetailRowHeight',index);  
+        }  
+    });  
+    $('#tt').datagrid('fixDetailRowHeight',index);  
+    },
+	loadMsg:'加载数据...',
+	url: 'data/data13.json',
+	title: false,
+	width: "auto",
+	fit:true,
+	fitColumns: true,
+	nowrap:false,
+	striped:true,
+	
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+	columns:[[
+	
+		{field:'number',title:'学号',width:80},
+		{field:'name',title:'姓名',width:80},
+		{field:'sex',title:'性别',width:120,formatter:function(value,rowData,rowIndex){
+			if(value=="1")
+				return '男';
+			else if(value=='2')
+				return '女';
+			else
+				return '-';
+		}},
+		{field:'identity',title:'身份',width:80},
+		{field:'faculty',title:'所属院系',width:250},
+		{field:'action',title:'查看详细',width:50,align:"center",
+		formatter:function(value,rowData,rowIndex){
+			return '<a href="用户信息查询_详细.html" title="查看"><img src="themes/default/images/blank.gif" class="icon ico-view" alt="查看" /></a>';
+		}}
+	]],
+	pagination:true
+});
+
+//添加扩展信息
+$("#add-items").click(function(){
+	$("#expand-content").append('<li><dl><dt>'+$("#expand-item-list").change().val()+'</dt><dd><input type="text" class="textinput_s" /> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a></dd></dl></li>');
+	if($("#expand-content").height() == "120"){
+		$("#expand-content").height("120").css("overflow-y","auto");
+	}
+})
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="#"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="新增用户" href="新增用户.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />新增用户</span><s></s></a>
+		<a class="button btn-back" title="文件导入" id="change-email"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-import" alt="" />文件导入</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-query" alt="" /><strong>用户信息查询</strong></div></div>
+	
+	<!-- 信息Form -->
+	<div class="tabContent">
+
+		<ul class="expand-item-ul">
+			<li><dl><dt>学号/工号</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li><dl><dt>姓名</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li><dl><dt>部门</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li><dl><dt>所属院系</dt><dd><select><option>计算机信息与应用</option><option>昆虫达人</option><option>法学</option></select></dd></dl></li>
+			<li><dl><dt>身份</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li><dl><dt>性别</dt><dd><select><option>保密</option><option>男</option><option>女</option></select></dd></dl></li>
+		</ul>
+		<div class="search-button-position">
+			<a class="button btn-save" title="查询" id="confirm" style="margin-top:1px;"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-zoomlight" alt="" />查 询</span><s></s></a>
+			<a class="button btn-back" title="批量修改" onclick="$('.edit-expand-batch').slideDown();"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />批量修改</span><s></s></a>
+			<a class="button btn-back" title="批量删除"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />批量删除</span><s></s></a>
+		</div>
+		
+	</div>
+	
+	<!-- 信息Form End -->
+		
+	<!-- 修改属性 -->
+		<div class="edit-expand-batch" style="display:none;">
+			<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" /><strong>批量修改属性</strong></div></div>
+			<div class="edit-box">
+				<dl class="add-expand">
+					<dt><img src="themes/default/images/blank.gif" class="icon ico-expand" alt="" />扩展信息</dt>
+					<dd><select style="width:270px;" id="expand-item-list"><option type="text">学号</option><option>身份</option><option>出生日期</option><option>离校时间</option></select></dd>
+					<dd class="add-dd"><a href="javascript:void(0)" id="add-items"><img src="themes/default/images/blank.gif" class="icon ico-add-24" alt="" /></a></dd>
+					<dd><a class="button btn-simple">保存</a></dd>
+				</dl>
+				
+				<ul class="expand-item-ul" id="expand-content">
+					<li><dl><dt>生日</dt><dd><input type="text" class="textinput_s" /> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a></dd></dl></li>
+					<li><dl><dt>专业</dt><dd><select><option>计算机信息与应用</option><option>昆虫达人</option><option>法学</option></select> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a></dd></dl></li>
+					<li><dl><dt>爱好</dt><dd><input type="text" class="textinput_s" /> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a></dd></dl></li>
+				</ul>
+			</div>
+		</div>
+	<!-- 修改属性 End -->
+	
+	<!-- 系统列表 -->
+	<div class="datagrid-wrap">
+		<table id="tt"></table>
+	</div>
+	<!-- 系统列表 End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>编辑信息</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	function profileLoad(){
+		$(".mainlrofile").width($("#content").width()-$(".side-profile").width()-99);
+	}
+	
+	$(window).load(function(){
+		profileLoad();
+		$('.tabContent').height($(window).height()-320);
+		$('.side-profile').height($(window).height()-310);
+	}).resize(function(){
+		profileLoad();
+		$('.tabContent').height($(window).height()-320);
+		$('.side-profile').height($(window).height()-310);
+	});
+
+	$(".tabdiv li").each(function(i,k){
+		$(k).click(function(){
+			$(".tabdiv li").removeClass();
+			$(k).addClass("active");
+			$('.tabContent').hide();
+			$('#'+$(k).find('a').attr('rel')).show();
+		})
+	})
+});
+
+</script>
+
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back btn-current" title="编辑信息" href="编辑信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-change" alt="" />编辑信息</span><s></s></a>
+		<a class="button btn-back" title="邮箱管理" href="邮箱管理.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-email" alt="" />邮箱管理</span><s></s></a>
+		<a class="button btn-back" title="密码修改"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-changepassword" alt="" />密码修改</span><s></s></a>
+		<a class="button btn-back" title="密码问题"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-password-faq" alt="" />密码问题</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+	<!-- 基本信息 -->
+<div class="formdiv baseinfodiv">
+	<div class="box">
+		<div class="side-profile">
+		<ul>
+			<li><img src="images/file.png" alt="头像" class="avatar" /></li>
+			<li style="padding-left:35px;"><a class="button btn-small" title="更换图像" id="confirm"><i></i><span>更换图像&nbsp;</span><s></s></a></li>
+		</ul>
+		</div>
+		<div class="mainlrofile">
+		
+			<div class="tabdiv">
+				<ul class="repeat">
+					<li class="active"><a href="javascript:void(0)" rel="baseinfo"><i class="sprite"></i><span class="repeat">基本信息</span><s class="sprite"></s></a></li>
+					<li><a href="#" rel="exinfomation"><i class="sprite"></i><span class="repeat">扩展信息</span><s class="sprite"></s></a></li>
+				</ul>
+			</div>
+			
+			<div id="baseinfo" class="tabContent">
+			<br/>
+			<dl>
+				<dt>登录名</dt>
+				<dd>：<input type="text" value="Admin" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>用户类型</dt>
+				<dd>：<input type="text" value="系统管理员" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>证件号码</dt>
+				<dd>：<input type="text" value="4548596989569" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>姓名</dt>
+				<dd>：<input type="text" value="李睦砂" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt class="no-pad-top">性别</dt>
+				<dd>：<input type="radio" checked="checked" class="radio" name="sex" />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="radio" name="sex" />女</dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd style="padding:10px 0 0 14px;">
+					<a class="button btn-save" title="保存" id="confirm"><i></i><span>保 存&nbsp;</span><s></s></a>
+					<a class="button btn-save" title="取消" id="confirm"><i></i><span>取 消&nbsp;</span><s></s></a>
+				</dd>
+			</dl>
+			</div>
+			
+			<div style="display:none;" class="tabContent" id="exinfomation">
+			<br/>
+			<dl>
+				<dt>联系电话</dt>
+				<dd>：<input type="text" value="12638748578" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>联系电话2</dt>
+				<dd>：<input type="text" value="01028395475" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>Email地址</dt>
+				<dd>：<input type="text" value="jeckson@abc.com" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<dl>
+				<dt>户籍</dt>
+				<dd>：<select><option>-选择-</option><option>中国</option><option>美国</option></select></dd>
+			</dl>
+			<br/>
+			<dl >
+				<dt>&nbsp;</dt>
+				<dd style="padding:10px 0 0 14px;">
+					<a class="button btn-save" title="保存" id="confirm"><i></i><span>保 存&nbsp;</span><s></s></a>
+					<a class="button btn-save" title="取消" id="confirm"><i></i><span>取 消&nbsp;</span><s></s></a>
+				</dd>
+			</dl>
+			</div>
+			
+		</div>
+		<div class="clearfix"></div>
+		<br/>
+	</div>
+
+</div>
+	<!-- 基本信息 End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>身份认证中心</title>
+<link href="themes/default/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery-powerFloat-min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#userLogin").powerFloat({
+		edgeAdjust:false,
+		eventType:"click",
+		position:"3-2",
+		width:"230",
+		offsets:{x:0,y:11},
+		showCall:function(){
+			$("#needread").click(function(){
+				$("#showRead").show();
+			})
+			$("#actionClase").click(function(){
+				$.powerFloat.hide();
+			})
+			$("#readClose").click(function(){
+				$("#showRead").hide();
+			})
+		}
+	});
+	
+
+
+});
+</script>
+</head>
+
+<div id="header">
+<div class="box" style="background:none;">
+	<!--
+	<div class="logo"><a title="身份认证中心"><img src="themes/default/images/logo.gif" alt="身份认证中心" /></a></div>
+	-->
+	<dl class="userinfo">
+		<dd>
+			<div><a href="javascript:void(0);" id="userLogin" rel="showLoginBox">用户登录</a></div>
+		</dd>
+	</dl>
+</div>
+</div>
+
+
+<div id="showLoginBox" style="display:none;">
+	<div class="popupLogin">
+		<span class="point"></span>
+		<h3><span class="close" id="actionClase"><img src="themes/default/images/blank.gif" class="icon ico-close-light" alt="" /></span><img src="themes/default/images/u-light.png" alt="" style="float:left;margin:-2px 4px 0 0;" width="20" />身份认证登录</h3>
+		<div class="popupLogin-content">
+			<dl>
+				<dt>帐号</dt>
+				<dd><input type="text" class="textinput" /></dd>
+			</dl>
+			<dl>
+				<dt>密码</dt>
+				<dd><input type="text" value="" class="textinput" /></dd>
+			</dl>
+			<div class="popupLogin-buton">
+				<span style="float:left"><input type="submit" value="帐号登录" /></span><span style="float:right"><input type="button" value="登录须知" id="needread"/></span>
+			</div>
+		</div>
+	</div>
+	
+<div id="showRead" style="display:none;">
+	<div class="popupLogin">
+		<div class="popupLogin-content" style="font-size:12px;">
+			<h4><a class="close" href="javascript:void(0)" id="readClose"><img src="themes/default/images/blank.gif" class="icon ico-del" alt="" /></a>登录须知</h4>
+			1.首次使用浙大通行证登录，请先激活帐号，教职工用户名为职工号，学生为学号，请点击此处激活帐号，获取密码<br/>
+2.为了您使用更加方便，建议安装浙江大学根证书<br/>
+3.如果无法正常登录，请致电 87951669<br/>
+4.如需进一步帮助，可查询帮助手册 
+
+		</div>
+	</div>
+</div>
+	
+</div>
+
+
+</body>
+</html>

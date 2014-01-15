@@ -1,0 +1,87 @@
+[{
+	"id":1,
+	"code":"首页",
+	"name":"00001",
+	"addr":"未使用",
+	"col4":"",
+	"iconCls":"icon-ok"
+},{
+	"id":2,
+	"code":"用户管理",
+	"name":"34344",
+	"addr":"使用",
+	"col4":"",
+	"children":[{
+		"id":21,
+		"code":"用户信息",
+		"name":"45345",
+		"col4":"col4 data"
+	},{
+		"id":22,
+		"code":"密码修改",
+		"name":"3345",
+		"col4":""
+	}]
+},{
+	"id":3,
+	"code":"密码管理",
+	"name":"-",
+	"addr":"-",
+	"col4":"col4 data",
+	"iconCls":"icon-ok",
+	"children":[{
+		"id":31,
+		"code":"批量密码修改",
+		"name":"78787",
+		"col4":"col4 data"
+		},{
+		"id":32,
+		"code":"重置密码",
+		"name":"44444",
+		"col4":"col4 data"
+		}]
+},{
+	"id":4,
+	"code":"权限管理",
+	"name":"-",
+	"addr":"-",
+	"col4":"col4 data",
+	"iconCls":"icon-ok",
+	"state":"closed",
+	"children":[{
+		"id":41,
+		"code":"角色设置",
+		"name":"9895",
+		"col4":""
+	},{
+		"id":42,
+		"code":"权限分配",
+		"name":"555",
+		"col4":""
+		
+	},{
+		"id":43,
+		"code":"添加角色",
+		"name":"5656",
+		"col4":""
+		
+	}]
+},{
+	"id":5,
+	"code":"审核管理",
+	"name":"-",
+	"addr":"-",
+	"col4":"col4 data",
+	"iconCls":"icon-ok",
+	"children":[{
+		"id":51,
+		"code":"系统审核",
+		"name":"6576",
+		"col4":""
+	},{
+		"id":52,
+		"code":"用户审核",
+		"name":"5666",
+		"col4":""
+	}]
+}]

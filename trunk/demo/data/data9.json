@@ -1,0 +1,7 @@
+{"total":28,"rows":[
+	{"Key":"SHCN","apiurl":"用户管理","default":"学号"},
+	{"Key":"SNUM","apiurl":"系统审核","default":"账号"},
+	{"Key":"USERNAME","apiurl":"用户管理","default":"用户名"},
+	{"Key":"SEX","apiurl":"用户管理","default":"性别"},
+	{"Key":"AGE","apiurl":"用户管理","default":"年龄"}
+]}

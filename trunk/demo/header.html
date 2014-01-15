@@ -1,0 +1,21 @@
+﻿<script type="text/javascript">
+$(function(){
+	$('#nav li.topMenu').hover(function(){
+		$(this).addClass('active').children('ol').show();
+	},function(){
+		$(this).removeClass('active').children('ol').hide();
+	})
+})
+</script>
+
+
+<div class="box">
+	<div class="logo"><a title="身份认证中心"><img src="themes/default/images/logo.gif" alt="身份认证中心" /></a></div>
+	<dl class="userinfo">
+		<dt class="sprite s-avatar"><img src="images/file.png" alt="身份认证中心" width="48" style="margin:3px;" /></dt>
+		<dd>
+			<h3>KYmien.Bok</h3>
+			<div><a href=""><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />修改密码</a>&nbsp;&nbsp;&nbsp;<a href="login.html"><img src="themes/default/images/blank.gif" class="icon ico-logout" alt="" />退出</a></div>
+		</dd>
+	</dl>
+</div>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>初始化信息</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#sys-create").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{
+	showTitle:false,
+	afterClose:function(){
+		$(".current").removeClass().addClass("passed").next().addClass("passed").prev().find(".excision").addClass("has-excision").parent().next().find(".excision").addClass("has-excision-last").parent().next().addClass("current");
+	}
+	});
+	dlg.show();
+		$(".dialog-close").click(function(){
+			dlg.hide();
+		});
+		$(".dlg-confirm").click(function(){
+			dlg.close();
+		
+		});
+})
+
+
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+	</div>
+	<div class="hr"></div>
+
+
+<!-- Form -->
+<br/>
+<div class="formdiv">
+	<div class="box">
+			<div class="repeat table-head"><div>初始化信息</div></div>
+			
+			<!-- setup 1 -->
+			<div id="setup-1">
+		<form id="roluForme" name="roluForme" action="">
+			
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<td colspan="3">
+				
+
+				<div class="formtips"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-tips" alt="" />由于您是第一次登录身份认证中心， 接下来只要简单完善下您的账户信息就OK了！</div>
+
+		
+				</td>
+			</tr>
+			<tr>
+				<td rowspan="7" align="center" valign="top" width="140"><img src="images/ssss.jpg" style="padding:10px;background-color:#fff;border:1px solid #eee;" /></td>
+			</tr>
+			<tr>
+				<th>姓名：</th>
+				<td><input style="width: 310px;" class="textinput easyui-validatebox" required="true" validType="length[1,3]" missingMessage="请输入您用户名！" invalidMessage="不通超过3字符！"/></td>
+			</tr>
+			
+			<tr>
+				<th>Email邮箱：</th>
+				<td><input style="width: 310px;" class="textinput easyui-validatebox" type="text" required="true" validType="email" missingMessage="请输入您的邮箱地址！" invalidMessage="请输入一个有效的电子邮件地址"/></td>
+			</tr>
+			
+			<tr>
+				<th>联系电话：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>证件号码：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>验证码：</th>
+				<td><ul class="sysname"><li><input style="width:100px;" class="textinput" type="text" /></li><li style="padding:0 4px;"><img src="images/typecode.jpg" alt="验证码" height="32"/></li><li class="sys-icon-msg"><a href="#">换一张</a></li></td>
+			</tr>
+			
+
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<a class="button btn-save" id="sys-create" title="下一步"><i></i><span>下一步&nbsp;</span><s></s></a>
+					<br/>
+					<br/>
+					<br/>
+					<br/><br/>
+					<br/><br/>
+					<br/><br/>
+
+
+				</td>
+			</tr>
+			</tbody>
+			</table>
+			
+		</form>
+		</div>
+		<!-- setup 1 End -->
+		
+		
+		
+	</div>
+</div>
+<!-- Form End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" /></td>
+					<td>您的初始化信息设置成功！<br/>现登录系统后完善其他信息。</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><br/><a class="button btn-small dlg-confirm" title="登录系统"><i></i><span>登录系统&nbsp;</span><s></s></a>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

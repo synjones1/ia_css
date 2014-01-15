@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录</title>
+<link href="themes/default/login.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script src="scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script src="scripts/init.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+//Input 检测
+	$("#action_login").click(function(){
+		$(".requset").each(function(i,o){
+			if($(o).val()==''){
+				$(this).addClass('input-error');
+				$(".request-msg").show().text("用户名称或密码不能为空!");
+			}else{
+				$(this).removeClass('input-error');
+				$(".request-msg").hide();
+				window.location.href="main.html";
+			}
+
+		});
+	
+	});
+	
+//输入框效果
+	$(".textinput").focus(function(){
+		$(this).parent().addClass("dl-input-focus");
+	})
+	$(".textinput").blur(function(){
+		$(this).parent().removeClass("dl-input-focus");
+	})
+	
+//登录方式
+	$(".login-type").hover(function(){
+		$(this).find("ul.ul-login-type").show().find("li a").click(
+			function(){
+				$("#type").text($(this).text());
+				$("ul.ul-login-type").hide();
+			}
+		)
+	},function(){
+		$(this).find("ul.ul-login-type").hide()
+	})
+	
+//下拉选择字典
+$('#cc').combobox({
+	editable:false,
+	width:244,
+	panelHeight:"auto"
+});
+
+//显示系统名称
+$(".i-li").hover(function(){
+	$(this).append("<div class='show-itemname'><span class='sprite arrow-span'></span>"+$(this).children("img").attr("alt")+"</div>")
+},function(){
+	$(this).find("div").remove();
+})
+})
+</script>
+</head>
+<body>
+<div id="header"></div>
+<div class="loginbody fixbackground">
+	<div class="head-row-box">
+		<div class="logintitle"></div>
+		<div class="help-div">
+			<dl>
+				<dd><img src="themes/default/images/blank.gif" class="icon ico-service" alt="" /></dd>
+				<dt><a href='#'>服务中心</a></dt>
+			</dl>
+			<dl>
+				<dd><img src="themes/default/images/blank.gif" class="icon ico-safety" alt="" /></dd>
+				<dt><a href='#'>安全记录</a></dt>
+			</dl>
+			<dl>
+				<dd><img src="themes/default/images/blank.gif" class="icon ico-forgot-password" alt="" /></dd>
+				<dt><a href='#'>找回密码</a></dt>
+			</dl>
+			<dl>
+				<dd><img src="themes/default/images/blank.gif" class="icon ico-userhelp" alt="" /></dd>
+				<dt><a href='#'>帮助</a></dt>
+			</dl>
+		</div>
+	</div>
+<!-- Login Box -->
+	<div id="loginbox">
+		<div class="loginForm">
+			<div class="outbox">
+				
+				<div class="fieldbox">
+					<div class="up"></div>
+					<div class="innerbox">
+					<div class="sprite request-msg"></div>
+						<dl class="dl-input">
+							<dt>登录类型：</dt>
+							<dd style="padding-left:2px;">
+								<select id="cc" name="state">
+									<option value="AL">用户名</option>
+									<option value="AK">管理员</option>
+									<option value="AZ">学工号</option>
+								</select>
+							</dd>
+						</dl>
+						<dl class="dl-input">
+							<dt>用户登录ID：</dt>
+							<dd class="sprite"><input type="text" name="userName" class="textinput requset user-input" /></dd>
+						</dl>
+						
+						<dl class="dl-input">
+							<dt>登录密码：</dt>
+							<dd class="sprite"><input type="password" name="userPasword" class="textinput requset" /></dd>
+							<dt class="text-dt"><a href="">忘记密码？</a></dt>
+						</dl class="dl-input">
+						
+						<div class="typecode">
+						<dl class="dl-input">
+							<dt>输入验证码：</dt>
+							<dd class="sprite"><input name="userName" class="textinput"  /></dd>
+						</dl>
+						<span class="code-img"><img src="images/typecode.jpg" alt="验证码" height="36" width="105" /></span>
+						<a href="#" class="change-code" title="看不清楚？">刷新验证码</a>
+						</div>
+						<dl class="login-botton">
+							<dd><input type="image" src="themes/default/images/ss_login.png" alt="登录" id="action_login" /></dd>
+						</dl>
+					</div>
+				</div>
+				
+			</div>
+				<!-- 安全说明 -->
+				<div class="safety-tips">
+					<h3><img src="themes/default/images/blank.gif" class="icon ico-lock-24" alt="" />安全信息</h3>
+					<ul class="safaty-ul">
+						<li><span class="dot"></span><div>为了您的安全，请妥善保管您的各种密码，建议您不要在公共场所或公用计算机上随便登录系统；</div></li>
+						<li><span class="dot"></span><div>请不要将用户名以及密码告诉其他人登录系统；</div></li>
+						<li><span class="dot"></span><div>登录成功后，请注意检查您的欢迎语和上次登录时间，使用网上银行完毕或暂离机器时请退出网上银行，证书版用户请勿忘拔出USBKey；</div></li>
+						<li><span class="dot"></span><div>短信密码版用户，请注意妥善保管您的手机，若有丢失，请及时补卡或更换新卡，变更手机号后请至柜面办理手机号更新手续，请勿将您手机收到的任何短信密码告诉他人；</div></li>
+					</ul>
+					<h3><img src="themes/default/images/blank.gif" class="icon ico-systemp-24" alt="" />已接入系统</h3>
+					<ul class="added-systemp-ul">
+						<li class="i-li"><img src="images/item-1.png" width="32" alt="查询系统"/></li>
+						<li class="i-li"><img src="images/item-2.png" width="32" alt="收费系统"/></li>
+						<li class="i-li"><img src="images/item-3.png" width="32" alt="监控系统"/></li>
+						<li class="i-li"><img src="images/item-4.png" width="32" alt="场馆系统"/></li>
+						<li class="more-li"><a href=""><img src="themes/default/images/blank.gif" class="icon ico-more-1" alt="" />更多</a></li>
+					</ul>
+				</div>
+				<!-- 安全说明 End -->
+				<div class="clear"></div>
+			
+		</div>
+		
+		
+
+	</div>
+<!-- Login Box End -->
+
+</div>
+<br/><br/>
+<!--copyright-->
+<div id="footer"></div>
+</body>
+</html>

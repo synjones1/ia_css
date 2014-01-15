@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批量维护 -编辑</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(".tabdiv li").each(function(i,k){
+		$(k).click(function(){
+			$(".tabdiv li").removeClass();
+			$(k).addClass("active");
+			$('.tabContent').hide();
+			$('#'+$(k).find('a').attr('rel')).show();
+		})
+	})
+//预览
+$("#preview-button").click(function(){
+	$(".td-append").addClass("td-preview").html('<div>wwwwwww</div>');
+})
+//保存
+$("#batch-save").click(function(){
+	$(".edit_title").each(function(i,k){
+		$(k).html('<img src="./themes/default/images/indicator.gif"/>');
+		setTimeout(function(){$(k).html('<img src="themes/default/images/blank.gif" class="icon ico-yes" alt="" />')},1000);
+	});
+})
+
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="批量维护.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-batchsave" alt="" /><strong>新增用户</strong></div></div>
+
+		<!-- 信息Form -->
+		<div class="userinfo-form">
+		
+			<div class="tabdiv">
+				<ul class="repeat">
+					<li class="active"><a href="javascript:void(0)" rel="baseinfo"><i class="sprite"></i><span class="repeat">基本信息</span><s class="sprite"></s></a></li>
+					<li><a href="#" rel="exinfomation"><i class="sprite"></i><span class="repeat">扩展信息</span><s class="sprite"></s></a></li>
+				</ul>
+			</div>
+			
+			<div id="baseinfo" class="tabContent">
+				<ul class="expand-item-ul">
+					<li><dl><dt>姓名</dt><dd><input type="text" class="textinput_s"  /></dd></dl></li>
+					<li><dl><dt>性别</dt><dd><select><option>保密</option><option>男</option><option>女</option></select></dd></dl></li>
+					<li><dl><dt>出生日期</dt><dd><input type="text" class="textinput_s"  /></dd></dl></li>
+					<li><dl><dt>学号/工号</dt><dd><input type="text" class="textinput_s"  /></dd></dl></li>
+					<li><dl><dt>证件类别</dt><dd><select><option>身份证</option><option>军官证</option><option>港/澳通行证</option></select></dd></dl></li>
+					<li><dl><dt>进校日期</dt><dd><input type="text" class="textinput_s"  /></dd></dl></li>
+				</ul>
+			</div>
+			
+			<div style="display:none;" class="tabContent" id="exinfomation">
+
+				
+				<ul class="expand-item-ul">
+					<li><dl><dt>生日</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+					<li><dl><dt>专业</dt><dd><select><option>计算机信息与应用</option><option>昆虫达人</option><option>法学</option></select></dd></dl></li>
+					<li><dl><dt>爱好</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+					
+				</ul>
+				
+			</div>
+			
+			
+			
+			<div style="height:40px;padding:15px 0 0 0;">
+				<a class="button btn-save" title="保存" id="batch-save"><i></i><span>保存</span><s></s></a>
+				<a class="button btn-read" title="预览" id="preview-button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-zoomlight" alt="" />预览</span><s></s></a>
+				<a class="button btn-save" title="清除操作" id="confirm"><i></i><span>清除操作</span><s></s></a>
+			</div>
+		</div>
+		<!-- 信息Form End -->
+
+
+<div class="catdiv">
+
+		<!-- 系统列表 -->
+<div class="batch-edit-list">
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<col width="120" />
+		<thead>
+			<tr>
+				<th>学号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>身份</th>
+				<th>所属院系</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="erow">
+				<td>65767567</td>
+				<td>柯爱良</td>
+				<td>男</td>
+				<td>研究生</td>
+				<td>经济与社会学</td>
+			</tr>
+			<tr>
+				<td class="edit_title"><strong>修改值</strong></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+			</tr>
+			<tr class="erow">
+				<td>34567777</td>
+				<td>柯爱良</td>
+				<td>男</td>
+				<td>研究生</td>
+				<td>经济与社会学</td>
+			</tr>
+			<tr>
+				<td class="edit_title"><strong>修改值</strong></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+			</tr>
+			<tr class="erow">
+				<td>676767567</td>
+				<td>何大旧</td>
+				<td>男</td>
+				<td>研究生</td>
+				<td>经济与社会学</td>
+			</tr>
+			<tr>
+				<td class="edit_title"><strong>修改值</strong></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+			</tr>
+			<tr class="erow">
+				<td>34567777</td>
+				<td>柯爱良</td>
+				<td>男</td>
+				<td>研究生</td>
+				<td>经济与社会学</td>
+			</tr>
+			<tr>
+				<td class="edit_title"><strong>修改值</strong></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+				<td class="td-append"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+		<!-- 系统列表 End -->
+
+</div>
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

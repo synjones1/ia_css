@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邮箱管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+$(function() {
+//下拉选择
+$('#cc').combotree({
+	url:'data/tree_data.json',
+	editable:false,value:'请选择',
+	width:240,
+	panelHeight:200,
+	multiple:true
+});
+
+
+//弹出treegrid
+$('#show-treegrid-box').dialog({
+    title: '弹出选择',  
+    width: 600,
+    height: 410,
+    closed: true,
+    cache: false,
+    modal: true,
+    maximizable:true,minimizable:true,
+    onOpen:function(){
+    
+		$('#tt').treegrid({
+			title:"字典列表",
+			iconCls:"icon-menu-title",
+			url:"data/treegrid2.json",
+			width:"auto",
+			height:300,
+			idField:"id",
+			treeField:"code",
+			fitColumns:true,
+			rownumbers: false,
+			singleSelect:false,
+			collapsible: false,
+			frozenColumns:[[
+				{field:'ck',checkbox:true}
+			]],
+			columns:[[
+				{field:'code',title:'名称',width:150,editor:"text"},
+				{field:'name',title:'代码',width:200,editor:"text"},
+				{field:'addr',title:'启用状态',width:150,editor:"text"},
+				{field:'col4',title:'排序',width:150,
+			        formatter:function(value){
+			        	return '<a href="#"><img src="themes/default/images/blank.gif" class="icon ico-up" alt="" /></a> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-down" alt="" /></a>';
+			        }
+			     }
+			]]
+		})
+    
+    }
+});  
+$("#change-treegrid").click(function(){
+	$('#show-treegrid-box').dialog('open');
+})
+});
+</script>
+</head>
+<body>
+<select id="cc" name="state"></select>
+
+<span style="width: 238px" class="combo" id="change-treegrid"><input style="width: 221px" class="combo-text validatebox-text" value="11, 222" readonly="readonly" type="text" autocomplete="off"><span><span class="combo-arrow"></span></span></span>
+
+
+<!-- 上传 -->
+<div id="show-treegrid-box">
+		<table id="tt"></table>
+		<div class="d-button-row"><a class="button btn-save dlg-confirm" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+</div>
+<!-- 上传 End -->
+
+</body>
+</html>

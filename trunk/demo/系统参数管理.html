@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统参数管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+
+//数据列表
+if ($.fn.pagination){
+	$.fn.pagination.defaults.beforePageText = '第';
+	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+}
+
+$('#tt').datagrid({
+	loadMsg:'加载数据...',
+	url: 'data/data17.json',
+	title: false,
+	width: "100%",
+	height: $(window).height()-250,
+	fitColumns: true,
+	nowrap:false,
+	fit:true,
+	striped:true,
+	pagination:true,
+	rownumbers:true,
+	singleSelect:true,
+	columns:[[
+		{field:'id',title:'ID',width:80},
+		{field:'name',title:'参数名',width:120},
+		{field:'value',title:'参数值',width:100},
+		{field:'desc',title:'参数说明',width:100},
+		{field:'status',title:'状态',width:50},
+		{field:'edit',title:'编辑',width:50,align:"center",formatter:function(value,rowData,rowIndex){
+			return '<a href="javascript:editValue('+rowIndex+')" title="编辑"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="编辑" /></a>';
+		}}
+	]]
+});
+
+
+$('#dialog-uncheck').dialog({
+    title: '编辑参数',  
+    width: 400,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true
+});
+
+});
+//编辑
+function editValue(i){
+	$('#dialog-uncheck').dialog('open');
+}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+		
+
+<br/>
+
+<!-- 列表 -->
+
+<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-query" alt="" /><strong>系统参数管理</strong></div></div>
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+
+<!-- 列表 End -->
+	</div>
+	
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 批量拒绝 -->
+<div id="dialog-uncheck">
+		<div class="d-innerbox">
+		<p style="padding:0 0 5px;">参数值：</p>
+		<p><textarea cols="36" style="width:98%;height:80px;">$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';</textarea></p>
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+</div>
+<!-- 批量拒绝 End -->
+
+</body>
+</html>

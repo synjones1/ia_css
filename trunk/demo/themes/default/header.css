@@ -1,0 +1,39 @@
+/* Header Add by 01/07/2011 */
+#header            {background-color:#fff;background-image:url(images/header.gif);background-position:0 0;background-repeat:repeat-x;border-bottom:1px solid #277585;min-width:1000px;height:78px;width:1000px;margin:0 auto;}
+*html #header      {width:expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");}
+#header .box       {background:url(images/headbox.gif) 0 0 no-repeat transparent;position: relative;height:100%;padding:0 10px;width:980px;margin:0 auto;}
+.logo              {float: left;padding: 12px 25px 0 3px;}
+.userinfo          {position:absolute;right:10px;bottom:9px;height:auto;}
+.userinfo dt.s-avatar{background-position: -478px -71px;width:54px;height:54px;}
+.userinfo dd       {padding:0 0 0 14px;}
+.userinfo h3       {font-weight:normal;font-size:20px;font-family:"YouYuan";padding:5px 0 10px 0;}
+#nav               {background:#195D92;height:32px;position:relative;z-index:10;min-width:1000px;width:1000px;margin:0 auto;}
+*html #nav         {width:expression((document.documentElement.clientWidth||document.body.clientWidth)<1000?"1000px":"");}
+#nav ul            {height:32px;padding:0 10px 0 0;width:988px;margin:0 auto;}
+#nav li            {border-right:1px solid #eaeaea;float: left; height: 31px;padding:0 0 0;position: relative;}
+#nav li.active     {background-color: #FFFFFF; border: 1px solid #008347;  padding: 1px 3px 0;}
+.has-children      {zoom:1;z-index:9999999;}
+.parent-m          {background-image:none !important;/*background-position: 10000px 10000px;*/float:left;color: #FFFFFF; cursor: pointer;height:31px;padding-left:16px;}
+.parent-m span     {background-image:none !important;/*background-position: 10000px 10000px;*/float:left;padding:6px 0 0 16px;height:21px;position:relative;left:-16px;}
+.current-a         {background-color:#fff;color:#0b4262;}
+
+.parent-m:hover,
+.parent-active     {background-color:#124372;color:#fff;background-image:none;/*background-position:right -529px;*/text-decoration:none;}
+.parent-m:hover span,
+.parent-active span{background-image:none;/*background-position:-258px -529px;*/}
+.sub-menu          {display:none;position:absolute;top:29px;left:0;width:153px;z-index:3999999999;}
+.menu-up           {background-position:-638px -581px;height:26px;}
+.menu-bottom       {background-position:-638px -714px;height:6px;}
+.sub-menu ol       {background:transparent url(images/sub-menu.png) repeat-y 0 0;padding:0 4px;margin:0;height:auto !important;position:relative;}
+.sub-menu ol li    {float:none !important;padding:0 !important;height:40px !important;border-bottom:1px solid #0F3962;border-top:1px solid #155383;border-right:0 !important;position: static !important;overflow:hidden;}
+.sub-menu ol li.first{border-top:0 !important;}
+.sub-menu ol li.last {border-bottom:0 !important;}
+.sub-menu ol li a    {color:#fff;border:none;white-space:nowrap;display:block;height:28px;padding:12px 0 0 10px;}
+.sub-menu ol li a .icon{float:left;margin:1px 6px 0 0;}
+#nav ol li a:hover   {background-color:#103C66;text-decoration:none;}
+.sub-menu ol li a.current-a{color:#0b4262;}
+.sub-menu ol li a.current-a:hover,
+.sub-menu ol li a.parent-active{color:#fff;}
+.sub-menu .sub-menu{left:146px;top:-6px;}
+.sub-menu .sub-menu .menu-up{background-position:-638px -570px;height:6px;}
+.sub-menu ol li a s{background-position:-632px -745px;float:right;width:16px;height:16px;line-height:0;font-size:0;overflow:hidden;position:absolute;right:14px;margin:2px 0 0;}

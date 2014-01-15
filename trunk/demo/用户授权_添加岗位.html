@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加岗位</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#sys-create").click(function(){
+	new Dialog(loader("提交数据..."),{
+	time:1000,
+	showTitle:false,
+	afterClose:function(){
+		dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();});
+	}
+	})
+	.show();
+})
+
+
+			$('#tt2').tree({
+				checkbox: true,
+				url: 'data/tree_data1.json',
+				onClick:function(node){
+					$(this).tree('toggle', node.target);
+					//alert('you click '+node.text);
+				},
+				onContextMenu: function(e, node){
+					e.preventDefault();
+					$('#tt2').tree('select', node.target);
+					$('#mm').menu('show', {
+						left: e.pageX,
+						top: e.pageY
+					});
+				}
+			});
+
+$(".tablegrid .tbody tr").hover(function(){
+	$(this).addClass("trhover");
+},function(){
+	$(this).removeClass("trhover");
+})
+})
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- 系统注册 -->
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back btn-current" title="添加岗位"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加岗位</span><s></s></a>
+	<a class="button btn-back" title="用户授权" href="用户授权_人员授权.html"><i></i><span>用户授权</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+
+<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>添加岗位</strong></div><i class="sprite"></i></div>
+
+<div class="formdiv">
+	<div class="box">
+		<form id="roluForme" name="roluForme" action="">
+			<div class="repeat table-head"><div>基本设置</div></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="150">岗位名称：</th>
+				<td><ul class="sysname"><li><input style="width: 310px;" class="textinput" type="text"/></li><li class="sys-icon-msg">&nbsp;最长20个字符！</li></ul></td>
+			</tr>
+			
+			<tr>
+				<th>岗位编号：</th>
+				<td><input class="radio" type="radio"/>启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="radio" type="radio"/>未启用</td>
+			</tr>
+			<tr>
+				<th>部门：</th>
+				<td><select class="select" style="width:318px;"><option>ssss</option></select></td>
+			</tr>
+			<tr>
+				<th>是否启用：</th>
+				<td><input class="radio" type="radio"/>启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="radio" type="radio"/>未启用</td>
+			</tr>
+		</tbody>
+		</table>
+		
+		<div class="repeat table-head"><div>授权设置</div></div>
+		<table cellspacing="0" cellpadding="10" class="formtable">
+			<tr>
+				<th width="150">分配人员：</th>
+				<td>
+				<div class="jobtouserbox">
+					<dl class="job-user-search">
+						<dt>学工号:</dt>
+						<dd><input class="textinput" type="text"/></dd>
+						<dt>姓名:</dt>
+						<dd><input class="textinput" type="text"/></dd>
+						<dt>部门:</dt>
+						<dd><select style="width:200px;"><option>ssss</option></select></dd>
+						<dd><a class="button btn-small" title="查询"><i></i><span>查 询</span><s></s></a></dd>
+					</dl>
+						
+<div class="widget-panel" style="border-right:0;">
+<div class="tablediv">
+	
+	<table cellspacing="0" cellpadding="5" border="0" class="tablegrid" width="100%">
+	
+		
+		<thead class="thead">
+			<tr>
+				<th class="cth"><input type="checkbox" class="noborder"></th>
+				<th class="sort">序号</th>
+				<th>学工号</th>
+				<th>姓名</th>
+			</tr>
+		</thead>
+		<tbody class="tbody">
+			<tr>
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">1</td>
+				<td>20110617</td>
+				<td>邓彦贲</td>
+				
+			</tr>
+			<tr class="erow">
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">2</td>
+				<td>20110618</td>
+				<td>何秀梅</td>
+				
+			</tr>
+			<tr>
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">3</td>
+				<td>20110619</td>
+				<td>唐丽霞</td>
+			</tr>
+			<tr class="erow">
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">2</td>
+				<td>20110618</td>
+				<td>刘产</td>
+				
+			</tr>
+			<tr>
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">3</td>
+				<td>20110619</td>
+				<td>李捷雄</td>
+			</tr>
+			<tr class="erow">
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">2</td>
+				<td>20110618</td>
+				<td>冼国良</td>
+				
+			</tr>
+			<tr>
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">3</td>
+				<td>20110619</td>
+				<td>邓彦贲</td>
+			</tr>
+			<tr class="erow">
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">2</td>
+				<td>20110618</td>
+				<td>魏云</td>
+				
+			</tr>
+			<tr>
+				<td class="chboxtd"><input type="checkbox" value="111" class="itemchk"></td>
+				<td class="sort">3</td>
+				<td>20110619</td>
+				<td>杨帆</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+				</div>
+				<div class="widget-panel" style="width:90px;border-right-color:#fff;border-left-color:#fff;">
+					<h3 class="repeat"><center style="font-weight:normal;font-family:'宋体'">=></center></h3>
+					<div class="widget-box" style="padding-left:20px;">
+					<br/><br/><br/><br/>
+					<a class="button btn-back" title="选 择" type="button"><i></i><span>选 择</span><s></s></a>
+					<a class="button btn-back" title="清空" type="button"><i></i><span>清 空</span><s></s></a>
+					</div>
+				</div>
+				<div class="widget-panel">
+					<h3 class="repeat">已选择人员列表</h3>
+					<div class="widget-box">
+					<span class="nameList">杨帆<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">魏云<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">陈宇<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">邓彦贲<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">李捷雄<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">冼国良<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">何秀梅<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">唐丽霞<a title="删除" href="javascript:void(0)">删除</a></span>
+					<span class="nameList">刘产<a title="删除" href="javascript:void(0)">删除</a></span>
+					</div>
+				</div>
+
+				</div>
+				</td>
+			</tr>
+			
+
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<a class="button btn-save" href="用户授权_岗位管理.html" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a>
+					<a class="button btn-save" id="sys-create" title="重置"><i></i><span>重 置&nbsp;</span><s></s></a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+			
+		</form>
+	</div>
+</div>
+<!-- Form End -->
+<!-- 系统注册End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">对话框</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<p class="show-tips-info"><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" />系统注册成功，等待管理员审核！<br/><a href="main.html">返回首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">继续注册</a></p>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

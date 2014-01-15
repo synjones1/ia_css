@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>密码修改</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+
+
+//修改邮箱
+$("#change-email").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+	
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="编辑信息" href="编辑信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-change" alt="" />编辑信息</span><s></s></a>
+		<a class="button btn-back" title="邮箱管理" href="邮箱管理.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-email" alt="" />邮箱管理</span><s></s></a>
+		<a class="button btn-back" title="密码修改" href="密码修改.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-changepassword" alt="" />密码修改</span><s></s></a>
+		<a class="button btn-back btn-current" title="密码问题" href="密码问题.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-password-faq" alt="" />密码问题</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+	<!-- 基本信息 -->
+<div class="formdiv baseinfodiv changepassworddiv">
+	<div class="box">
+		<br/><br/>
+		<div class="formtips" style="width:450px;margin-left:12%;"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-tips" alt="" />可设置最多3个密保问题！</div>
+		<br/><br/>
+		<div class="">
+		
+			<dl>
+				<dt>问题一：</dt>
+				<dd><select class="select" name="questionsel" style="width:310px;"><option value="" selected="">请您选择一个问题...</option><option value="我就读的第一所学校的名称">我就读的第一所学校的名称</option><option value="我最喜欢的休闲运动是什么">我最喜欢的休闲运动是什么</option><option value="我最喜欢的运动员是谁">我最喜欢的运动员是谁</option><option value="我的宠物的名字">我的宠物的名字</option><option value="我手机号码的后6位">我手机号码的后6位</option><option value="我母亲的生日">我母亲的生日</option><option value="我父亲的生日">我父亲的生日</option><option value="我最好朋友的生日">我最好朋友的生日</option><option value="我儿时居住地的地址">我儿时居住地的地址</option><option value="我小学校名全称">我小学校名全称</option><option value="我中学校名全称">我中学校名全称</option><option value="我的座右铭是">我的座右铭是</option><option value="我最喜爱的电影">我最喜爱的电影</option><option value="我最喜爱的歌曲">我最喜爱的歌曲</option><option value="我最喜爱的食物">我最喜爱的食物</option><option value="我最大的爱好">我最大的爱好</option><option value="我最喜欢的小说">我最喜欢的小说</option><option value="0000">自定义问题</option></select></dd>
+				<dt class="msg"><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-add2" alt="" /></a></dt>
+			</dl>
+			<br/>
+			<dl>
+				<dt>答案一：</dt>
+				<dd><input type="text" value="" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt>问题二：</dt>
+				<dd><select class="select" name="questionsel" style="width:310px;"><option value="" selected="">请您选择一个问题...</option><option value="我就读的第一所学校的名称">我就读的第一所学校的名称</option><option value="我最喜欢的休闲运动是什么">我最喜欢的休闲运动是什么</option><option value="我最喜欢的运动员是谁">我最喜欢的运动员是谁</option><option value="我的宠物的名字">我的宠物的名字</option><option value="我手机号码的后6位">我手机号码的后6位</option><option value="我母亲的生日">我母亲的生日</option><option value="我父亲的生日">我父亲的生日</option><option value="我最好朋友的生日">我最好朋友的生日</option><option value="我儿时居住地的地址">我儿时居住地的地址</option><option value="我小学校名全称">我小学校名全称</option><option value="我中学校名全称">我中学校名全称</option><option value="我的座右铭是">我的座右铭是</option><option value="我最喜爱的电影">我最喜爱的电影</option><option value="我最喜爱的歌曲">我最喜爱的歌曲</option><option value="我最喜爱的食物">我最喜爱的食物</option><option value="我最大的爱好">我最大的爱好</option><option value="我最喜欢的小说">我最喜欢的小说</option><option value="0000">自定义问题</option></select></dd>
+				<dt class="msg"><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-add2" alt="" /></a></dt>
+			</dl>
+			<br/>
+
+			<dl>
+				<dt>答案二：</dt>
+				<dd><input type="password" value="" class="textinput" style="width:300px;" /></dd>
+			</dl>
+
+			<br/>
+
+			<dl>
+				<dt>登录密码：</dt>
+				<dd><input type="password" value="" class="textinput" style="width:300px;" /></dd>
+			</dl>
+			<br/>
+			<dl class="d-button-row">
+				<dt>&nbsp;</dt>
+				<dd style="padding:10px 0 0 0;">
+					<a class="button btn-save" title="保存" id="confirm"><i></i><span>保 存&nbsp;</span><s></s></a>
+					<a class="button btn-save" title="取消" id="confirm"><i></i><span>取 消&nbsp;</span><s></s></a>
+				</dd>
+			</dl>
+		</div>
+		<div class="clearfix"></div>
+		<br/><br/><br/>
+	</div>
+
+</div>
+	<!-- 基本信息 End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">修改邮箱</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<p><input type="text" class="textinput" value="Jkxxxxx@hotmail.com" style="width:96%" /></p>
+			<br/>
+		</div>
+			<div class="d-button-row"><a class="button btn-save dlg-confirm" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

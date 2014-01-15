@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户审核详细</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+
+//拒绝审核
+$("#uncheckAll").click(function(){
+	$('#dialog-uncheck-single').dialog('open');
+})
+
+$('#dialog-uncheck-single').dialog({
+    title: '拒绝',  
+    width: 600,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true
+});
+
+//编辑
+$("#editFiled").click(function(){
+var editingId;
+
+	var row = $('#tt').datagrid('getSelected');
+	if (row){
+               editingId = row.id;
+               $('#tt').datagrid('beginEdit', editingId);  
+           }
+           alert(row.id);
+//	alert(editingId);
+//	$('#tt').datagrid('beginEdit',1);
+//	$('#tt').datagrid('endEdit');
+})
+
+//计算宽度
+$(window).resize(function(){
+	var editWidth = ($(".datagrid-div ul").width()-$(".datagrid-div ul li.sort").width()-$(".datagrid-div ul li.filed-name").width())/2-10;
+	$(".datagrid-div ul li.editing,.datagrid-div ul li.edited").width(editWidth);
+})
+$(window).load(function(){
+	var editWidth = ($(".datagrid-div ul").width()-$(".datagrid-div ul li.sort").width()-$(".datagrid-div ul li.filed-name").width())/2-10;
+	$(".datagrid-div ul li.editing,.datagrid-div ul li.edited").width(editWidth);
+})
+$(".datagrid-div ul:even").addClass("even");
+$(".gridbody-div ul:last").addClass("last");
+$(".datagrid-div ul").hover(function(){
+	$(this).addClass("hover");
+},function(){
+	$(this).removeClass("hover");
+})
+$(".gridbody-div").height($(window).height()-310)
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="批量审核"><i></i><span>审核</span><s></s></a>
+		<a class="button btn-back" title="批量拒绝" id="uncheckAll"><i></i><span>拒绝</span><s></s></a>
+		<a class="button btn-back" title="批量拒绝" id="editFiled"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />编辑</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-check" alt="" /><strong>审核详细信息</strong></div></div>
+
+<div class="catdiv">
+
+		<!-- 系统列表 -->
+
+<div class="datagrid-div">
+	<ul class="datagrid-head-ul">
+		<li class="sort"><div class="inner-div">1</div></li>
+		<li class="filed-name"><div class="inner-div">字段名称</div></li>
+		<li class="editing"><div class="inner-div">修改后</div></li>
+		<li class="edited"><div class="inner-div">修改前</div></li>
+	</ul>
+	<div class="gridbody-div">
+		<ul>
+			<li class="sort"><div class="inner-div">2</div></li>
+			<li class="filed-name"><div class="inner-div">学号</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">3</div></li>
+			<li class="filed-name"><div class="inner-div">姓名</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">4</div></li>
+			<li class="filed-name"><div class="inner-div">性别</div></li>
+			<li class="editing"><div class="inner-div"><input type="text" value="334234" class="textinput"/></div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul class="diff">
+			<li class="sort"><div class="inner-div">5</div></li>
+			<li class="filed-name"><div class="inner-div">身份</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">6</div></li>
+			<li class="filed-name"><div class="inner-div">所属院系</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">7</div></li>
+			<li class="filed-name"><div class="inner-div">身份</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">8</div></li>
+			<li class="filed-name"><div class="inner-div">学号/工号</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">9</div></li>
+			<li class="filed-name"><div class="inner-div">部门</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">10</div></li>
+			<li class="filed-name"><div class="inner-div">民族</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">11</div></li>
+			<li class="filed-name"><div class="inner-div">籍贯</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">12</div></li>
+			<li class="filed-name"><div class="inner-div">邮政编码</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">13</div></li>
+			<li class="filed-name"><div class="inner-div">证件类型</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">14</div></li>
+			<li class="filed-name"><div class="inner-div">住址</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">15</div></li>
+			<li class="filed-name"><div class="inner-div">政治面貌</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">16</div></li>
+			<li class="filed-name"><div class="inner-div">身份类别</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">17</div></li>
+			<li class="filed-name"><div class="inner-div">联系电话</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">18</div></li>
+			<li class="filed-name"><div class="inner-div">出生日期</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">19</div></li>
+			<li class="filed-name"><div class="inner-div">进校日期</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">20</div></li>
+			<li class="filed-name"><div class="inner-div">国家/地区</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">21</div></li>
+			<li class="filed-name"><div class="inner-div">电子邮件</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">22</div></li>
+			<li class="filed-name"><div class="inner-div">证件号码</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul class="diff">
+			<li class="sort"><div class="inner-div">23</div></li>
+			<li class="filed-name"><div class="inner-div">有效日期</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">24</div></li>
+			<li class="filed-name"><div class="inner-div">联系电话</div></li>
+			<li class="editing"><div class="inner-div">222222</div></li>
+			<li class="edited"><div class="inner-div">22222</div></li>
+		</ul>
+		<ul>
+			<li class="sort"><div class="inner-div">25</div></li>
+			<li class="filed-name"><div class="inner-div">出生日期</div></li>
+			<li class="editing"><div class="inner-div">222</div></li>
+			<li class="edited"><div class="inner-div">222222</div></li>
+		</ul>
+	</div>
+</div>
+		<!-- 系统列表 End -->
+
+</div>
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 拒绝 -->
+<div id="dialog-uncheck-single">
+		<div class="d-innerbox">
+<div class="batch-fieldchange-panel" style="display:block;padding:0;border:0;">
+
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />请选择拒绝项</h4>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />姓名</li>
+			<li><input type="checkbox" class="checkbox" />性别</li>
+			<li><input type="checkbox" class="checkbox" />出生日期</li>
+			<li><input type="checkbox" class="checkbox" />学号/工号</li>
+			<li><input type="checkbox" class="checkbox" />证件类别</li>
+			<li><input type="checkbox" class="checkbox" />进校日期</li>
+			<li><input type="checkbox" class="checkbox" />部门</li>
+			<li><input type="checkbox" class="checkbox" />住址</li>
+			<li><input type="checkbox" class="checkbox" />国家/地区</li>
+			<li><input type="checkbox" class="checkbox" />民族</li>
+			<li><input type="checkbox" class="checkbox" />政治面貌</li>
+			<li><input type="checkbox" class="checkbox" />电子邮件</li>
+			<li><input type="checkbox" class="checkbox" />籍贯</li>
+			<li><input type="checkbox" class="checkbox" />身份类别</li>
+			<li><input type="checkbox" class="checkbox" />证件号码</li>
+			<li><input type="checkbox" class="checkbox" />邮政编码</li>
+			<li><input type="checkbox" class="checkbox" />联系电话</li>
+			<li><input type="checkbox" class="checkbox" />有效日期 </li>
+		</ul>
+		
+		<dl class="panel-foot">
+			<dt><input type="checkbox" class="checkbox" id="checkall" /><label for="checkall">全选</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="uncheckall" /><label for="uncheckall">反选</label></dt>
+		</dl>
+
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+</div>
+<!-- 拒绝 End -->
+
+
+</body>
+</html>

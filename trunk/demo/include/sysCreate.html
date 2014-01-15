@@ -1,0 +1,68 @@
+﻿<script type="text/javascript">
+$(function() {
+$(".btn-save").click(function(){
+	new Dialog(loader("提交数据..."),{
+	time:1000,
+	showTitle:false
+	})
+	.show();
+})
+});
+</script>
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="系统管理" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-manager" alt="" />系统管理</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+<br/>
+<div class="formdiv">
+	<div class="box">
+		<form id="roluForme" name="roluForme" action="">
+			<dl>
+				<dt>系统名称：</dt>
+				<dd><input style="width: 310px;" class="textinput" type="text"/></dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt>系统ID：</dt>
+				<dd><input style="width: 310px;" class="textinput" type="text"/></dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt>接口地址：</dt>
+				<dd><input style="width: 310px;" class="textinput" type="text"></dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt class="no-pad-top">服务器IP：</dt>
+				<dd>
+					<input style="width: 310px;" class="textinput" type="text"/>
+					<ul class="ul-iplist">
+						<li>112.208.64.176</li>
+						<li>10.128.0.20</li>
+					</ul>
+				</dd>
+				<dd><a href="javascript:void(0)"><img src="themes/default/images/blank.gif" class="icon ico-addsmall" alt="" /></a></dd>
+			</dl>
+			<br/>
+			<dl>
+				<dt class="no-pad-top">系统描述：</dt>
+				<dd><textarea cols="60" rows="6"></textarea></dd></dl>
+
+			
+			<br>
+			
+			<dl>
+				<dt>&nbsp;</dt>
+				<dd>
+					<a class="button btn-save" title="注册"><i></i><span>注 册</span><s></s></a>
+				</dd>
+			</dl>
+			<br/>
+		</form>
+	</div>
+</div>
+<!-- Form End -->

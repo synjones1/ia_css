@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>角色列表</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$('#tt').datagrid({
+	loadMsg:'加载数据...',
+	url: 'data/data16.json',
+//	title: "角色列表",
+	width: "auto",
+	height: "auto",
+	fitColumns: true,
+	nowrap:false,
+	striped:true,
+	fit:true,
+	pagination:true,
+	frozenColumns:[[
+		{field:'ck',checkbox:true}
+	]],
+	columns:[[
+		{field:'name',title:'角色名称',width:80},
+		{field:'description',title:'说明',width:80},
+		{field:'identity',title:'状态',width:80,
+		formatter:function(value,rowData,rowIndex){
+			if(rowData.identity == '1')
+				return '<span class="green_mid">启用</span>';
+			else if(rowData.identity == '0')
+				return '<span class="red_low">停用</span>';
+		}},
+		{field:'edit',title:'编辑',width:40,align:"center",
+		formatter:function(value,rowData,rowIndex){
+			return '<a href="用户授权_添加角色.html" title="编辑"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="编辑" /></a>';
+		}},
+		{field:'delete',title:'删除',width:40,align:"center",
+		formatter:function(value,rowData,rowIndex){
+			return '<a href="#" title="删除"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="删除" /></a>';
+		}}
+	]]
+});
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="#"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="添加角色" href="用户授权_添加角色.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加角色</span><s></s></a>
+		<a class="button btn-back" title="用户授权" href="用户授权_人员授权.html"><i></i><span>用户授权</span><s></s></a>
+		<a class="button btn-back" title="删除" id="change-email"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-query" alt="" /><strong>角色列表</strong></div></div>
+	
+
+	<!-- 系统列表 -->
+	<div class="datagrid-wrap">
+		<table id="tt"></table>
+	</div>
+	<!-- 系统列表 End -->
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

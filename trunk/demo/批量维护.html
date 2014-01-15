@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>批量维护</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery-powerFloat-min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+//用户列表
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data4.json',
+				title: false,
+				width: "auto",
+				fit: true,
+				fitColumns: true,
+				pagination:true,
+				nowrap:false,
+				striped:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'number',title:'学号',width:80},
+					{field:'name',title:'姓名',width:80},
+					{field:'sex',title:'性别',width:120,formatter:function(value,rowData,rowIndex){
+						if(value=="1")
+							return '男';
+						else if(value=='2')
+							return '女';
+						else
+							return '-';
+					}},
+					{field:'identity',title:'身份',width:80},
+					{field:'faculty',title:'所属院系',width:250},
+					{field:'action',title:'操作',width:60,
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="#" title="删除"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="删除" /></a> <a href="#" title="编辑"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="编辑" /></a>';
+					}}
+				]]
+			});
+//左边树
+			$('#treegrid').treegrid({
+				width:"auto",
+				height:$(".system-list-div").height()-42,
+				nowrap: false,
+				rownumbers: false,
+				animate:true,
+				collapsible:true,
+				fitColumns: true,
+				url:'data/treegrid.json',
+				idField:'code',
+				treeField:'code',
+				columns:[[
+					{title:'部门',field:'code',width:100}
+				]]
+			}); 
+
+//左边高度控制
+	function catFixHeight(){
+		if($(window).height() < 664){
+			$(".categories .box").height("356");
+		}else{
+			$(".categories .box").height($(".system-list-div").height()-42);
+		}
+	}
+	$(window).load(catFixHeight).resize(catFixHeight);
+	
+//批量选择字段
+$("#change-batch").powerFloat({
+		offsets:{x:"-4",y:"-6"},
+		edgeAdjust:false,
+		position:"4-1",
+		width:"550",
+		showCall:function(){
+			$(this).addClass("btn-change");
+		},hideCall:function(){
+			$(this).removeClass("btn-change");
+		}
+	});
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="新增用户" href="新增用户.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />新增用户</span><s></s></a>
+		<a class="button btn-back" title="文件导入" id="change-email"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-import" alt="" />文件导入</span><s></s></a>
+		<a class="button btn-back" title="批量编辑" id="change-batch" rel="show-batchbox"><i></i><span class="more-select"><img src="themes/default/images/blank.gif" class="icon ico-batch" alt="" />批量编辑</span><s></s></a>
+		<a class="button btn-back" title="删除"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+<div class="bacth-listbox">
+		<!-- 树 -->
+			<div class="categories">
+				<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>所属院系</strong></div><i class="sprite"></i></div>
+				<div class="box">
+				
+					<table id="treegrid"></table>
+				
+				</div>
+			</div>
+		<!-- 树 End -->
+		<!-- 系统列表 -->
+			<div class="system-list-div">
+<!-- 筛选 -->
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dt><input type="radio" class="radio" name="d" id="num" /><label for="num">学工号</label></dt>
+			<dt><input type="radio" class="radio" name="d" id="card" /><label for="card">卡号</label></dt>
+			<dt><input type="radio" class="radio" name="d" id="name" /><label for="name">姓名</label></dt>
+			<dd><input type="text" class="textinput" name="d" /></dd>
+			<dd><a class="button btn-save" title="查询" type="button"><i></i><span>查 询&nbsp;</span><s></s></a></dd>
+		</dl>
+	</div>
+</div>
+<!-- 筛选End -->
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+
+			</div>
+		<!-- 系统列表 End -->
+
+</div>
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+<div id="show-batchbox" class="batch-fieldchange-panel">
+	<span class="sprite panel-close" title="关闭" onclick="$('#show-batchbox').hide();">关闭</span>
+	<div class="box">
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />基本信息</h4>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />姓名</li>
+			<li><input type="checkbox" class="checkbox" />性别</li>
+			<li><input type="checkbox" class="checkbox" />出生日期</li>
+			<li><input type="checkbox" class="checkbox" />学号/工号</li>
+			<li><input type="checkbox" class="checkbox" />证件类别</li>
+			<li><input type="checkbox" class="checkbox" />进校日期</li>
+			<li><input type="checkbox" class="checkbox" />部门</li>
+			<li><input type="checkbox" class="checkbox" />住址</li>
+			<li><input type="checkbox" class="checkbox" />国家/地区</li>
+			<li><input type="checkbox" class="checkbox" />民族</li>
+			<li><input type="checkbox" class="checkbox" />政治面貌</li>
+			<li><input type="checkbox" class="checkbox" />电子邮件</li>
+			<li><input type="checkbox" class="checkbox" />籍贯</li>
+			<li><input type="checkbox" class="checkbox" />身份类别</li>
+			<li><input type="checkbox" class="checkbox" />证件号码</li>
+			<li><input type="checkbox" class="checkbox" />邮政编码</li>
+			<li><input type="checkbox" class="checkbox" />联系电话</li>
+			<li><input type="checkbox" class="checkbox" />有效日期 </li>
+		</ul>
+		
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />扩展信息</h4>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />姓名</li>
+			<li><input type="checkbox" class="checkbox" />性别</li>
+			<li><input type="checkbox" class="checkbox" />出生日期</li>
+			<li><input type="checkbox" class="checkbox" />学号/工号</li>
+			<li><input type="checkbox" class="checkbox" />证件类别</li>
+			<li><input type="checkbox" class="checkbox" />进校日期</li>
+		</ul>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />密码修改</li>
+		</ul>
+		<dl class="panel-foot">
+			<dt><input type="checkbox" class="checkbox" id="checkall" /><label for="checkall">全选</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="uncheckall" /><label for="uncheckall">反选</label></dt>
+			<dd><a class="button btn-simple" id="change-filed" href="批量维护_编辑.html">确定</a></dd>
+		</dl>
+	</div>
+</div>
+</body>
+</html>

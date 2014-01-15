@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>菜单管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+
+if($.browser.msie)
+	var gridWidth = $(window).width()-20;
+else
+	var gridWidth = $(window).width()-37;
+
+$('#tt').treegrid({
+	title:"菜单管理",
+	iconCls:"icon-menu-title",
+	url:"data/treegrid1.json",
+	width:"auto",
+	fit:true,
+	idField:"id",
+	treeField:"code",
+	fitColumns:true,
+	rownumbers: true,
+	singleSelect:"true",
+	collapsible: false,
+	columns:[[
+		{field:'code',title:'菜单',width:150,editor:"text"},
+		{field:'name',title:'URL',width:200,editor:"text"},
+		{field:'m-icon',title:'图标显示',width:50,align:"center",formatter:function(value,row,index){
+			return '<span class="sprite menu-icon-style"><img src="themes/default/images/blank.gif" class="icon '+row.addr+'" alt="" /></span>'
+		}},
+		{field:'addr',title:'图标样式',width:150,editor:"text"},
+		{field:'col4',title:'操作',width:150,
+	        formatter:function(value){
+	        	return '<a href="#"><img src="themes/default/images/blank.gif" class="icon ico-up" alt="" /></a> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-down" alt="" /></a> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-move" alt="" /></a> <a href="javascript:editNode();"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" /></a> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a>';
+	        }
+	     }
+	]]
+})
+
+
+
+//添加菜单
+	$("#uncheck").click(function(){
+		dlg = new Dialog({type:"id",value:"dialog-uncheck"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();})
+	})
+	
+});
+
+
+//保存
+var editingId;  
+function saveNode(){
+   if (editingId != undefined){
+       var t = $('#tt');  
+       t.treegrid('endEdit', editingId);  
+       editingId = undefined;  
+       var persons = 0;  
+       var rows = t.treegrid('getChildren');  
+       for(var i=0; i<rows.length; i++){  
+           var p = parseInt(rows[i].persons);  
+           if (!isNaN(p)){  
+               persons += p;  
+           }  
+       }  
+   }  
+}
+//编辑
+function editNode(){
+	if (editingId != undefined){  
+	    $('#tt').treegrid('select', editingId);  
+	    return;  
+	}  
+	var row = $('#tt').treegrid('getSelected');  
+	if (row){  
+	    editingId = row.id  
+	    $('#tt').treegrid('beginEdit', editingId);  
+	}  
+}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+		
+<div class="toolsbar">
+	<a class="button btn-back" title="返回"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" id="uncheck" title="添加菜单" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加菜单</span><s></s></a>
+	<a class="button btn-back" title="审核" href="javascript:saveNode();"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-save" alt="" />保存</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- 列表 -->
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+<!-- 列表 End -->
+	</div>
+	
+<!-- 添加菜单 -->
+<div id="dialog-uncheck" style="display:none;">
+<div class="dialogbox" style="width:420px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">添加菜单</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<div class="addmenuform">
+				<dl>
+					<dt>上级菜单：</dt>
+					<dd><select class="select" style="width:302px"><option>选择</option><option>用户管理</option></select></dd>
+				</dl>
+				
+				<dl>
+					<dt>菜单名称：</dt>
+					<dd><input type="text" class="textinput" style="width:292px" /></dd>
+				</dl>
+				
+				<dl>
+					<dt>图片样式：</dt>
+					<dd><input type="text" class="textinput" style="width:292px" /><p style="padding:0 0 5px;font-size:12px;" class="tips"><img src="themes/default/images/blank.gif" class="icon ico-info" alt="" />class图标样式，例如：ico-menu-1，如果为空则显示默认图片</p></dd>
+				</dl>
+				
+				<dl style="padding:0 0 10px;">
+					<dt>&nbsp;</dt>
+					<dd><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></dd>
+				</dl>
+				
+			</div>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 添加菜单 End -->
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

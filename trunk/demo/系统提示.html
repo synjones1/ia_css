@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>错误页面</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	function profileLoad(){
+		$(".formtable").height($(window).height()-268);
+	}
+	$(window).load(profileLoad).resize(profileLoad);
+	
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- Form -->
+
+<br/>
+<div class="formdiv">
+	<div class="box">
+			<div class="repeat table-head"><div>系统提示</div></div>
+			
+
+			
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+
+			<tr>
+				<th style="text-align:left;vertical-align:middle;">
+				
+				
+						<div class="system-message">
+				<table align="center" style="margin:0 auto;">
+					<tr>
+						<td width="80" valign="top"><img src="themes/default/images/blank.gif" class="icon ico-error-b" alt="" /><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" /><img src="themes/default/images/blank.gif" class="icon ico-confirm-b" alt="" /><img src="themes/default/images/blank.gif" class="icon ico-tips-b" alt="" /><img src="themes/default/images/blank.gif" class="icon ico-warning-b" alt="" /></td>
+						<td valign="top">
+							<h3>操作成功失败!</h3>
+							<p>您要查找的资源可能已被删除，已更改名称或者暂时不可用。<br/>请 <a href="" class="blue"><u>刷新</u></a> ，或者随便逛一逛。</p>
+
+							<div>
+							<br/>
+								<a class="button btn-small" title="返回上一步" href="main.html"><i></i><span><img class="icon ico-return" alt="" src="themes/default/images/blank.gif" />返回上一步</span><s></s></a>
+								<a class="button btn-small" title="返回系统首页" href="main.html"><i></i><span><img class="icon ico-home" alt="" src="themes/default/images/blank.gif" />返回系统首页</span><s></s></a>
+							</div>
+				</td>
+					</tr>
+				</table>
+					</div>
+				
+				</th>
+			</tr>
+
+			
+
+			
+
+			
+
+			</tbody>
+			</table>
+			
+
+
+		
+		
+		
+	</div>
+</div>
+<!-- Form End -->
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统分类管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+	
+	$("#itemlist").load("include/item-5.html",function(){
+		if($(window).height() < 664){
+			$(".viewport").height("396");
+		}else{
+			$(".viewport").height($(window).height()-276);
+		}
+		ItemHover();
+		Itemscroll();
+	});/*载入分类*/
+	$(window).resize(function(){
+		if($(window).height() < 664){
+			$(".viewport").height("396");
+		}else{
+			$(".viewport").height($(window).height()-276);
+		}
+		ItemHover();Itemscroll()
+	});
+	
+//分类高度控制
+	function catFixHeight(){
+		if($(window).height() < 664){
+			$(".categories .box").height("358");
+		}else{
+			$(".categories .box").height($(window).height()-313);
+		}
+	}
+	$(window).load(catFixHeight).resize(catFixHeight);
+//添加分类
+	$("#newCategories").click(function(){
+		dlg = new Dialog({type:"id",value:"dialog-newCategroies"},{showTitle:false});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();})
+	})
+//系统管理
+	$("#item-set").click(function(){
+		$(this).attr("id","");
+		$(".system-item li").each(function(i,k){
+			$(k).append('<span class="remove-item" id="rem-'+i+'"><img src="themes/default/images/blank.gif" class="icon ico-remove-24" alt="" /></span>');
+		})
+		$(".system-item li").last().find(".remove-item").remove();
+		
+		
+		$("#finishe").show().click(function(){
+			$(this).hide();
+			$(".system-item li").each(function(i,k){
+				$(k).find(".remove-item").remove();
+			})
+		});
+	})
+//编辑分类
+	$("#edit-categories").click(function(){
+		$(".categoory-list li").each(function(i,k){
+			$(k).append('<span class="categories-value"><input type="input" value="'+$(k).find("a").text()+'" /></span><span class="remove-categroies"><img src="themes/default/images/blank.gif" class="icon ico-remove-24" alt="" /></span>');
+		})
+		$("#finishe").show().click(function(){
+			$(this).hide();
+			$(".categoory-list li").each(function(i,k){
+				$(k).find(".categories-value,.remove-categroies").remove();
+			})
+		});
+	})
+});
+//添加系统
+	function addSystemp(){
+		dlg = new Dialog({type:"id",value:"dialog-uncheck"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();})
+	}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content" class="fixheight">
+
+	<div id="mainbox">
+	
+		<div class="toolsbar">
+			<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+			<span class="v-dotted-line"></span>
+			<a class="button btn-back" title="添加分类" id="newCategories"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加分类</span><s></s></a>
+			<a class="button btn-back" title="管理" id="item-set"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-modify" alt="" />管理</span><s></s></a>
+			<a class="button btn-back" title="完成" id="finishe" style="display:none;"><i></i><span>完成</span><s></s></a>
+		</div>
+		<div class="hr"></div>
+
+		<div class="catdiv">
+		<!-- 分类 -->
+			<div class="categories">
+				<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>系统分类</strong></div><em class="edit" id="edit-categories"><img src="themes/default/images/blank.gif" class="icon ico-modify-20" alt="" /></em><i class="sprite"></i></div>
+				<div class="box">
+					<ul class="categoory-list">
+						<li><a href="" class="current"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-folder-open" alt="" />收费业务</a></li>
+						<li><a href=""><img src="themes/default/images/blank.gif" class="icon ico-32 ico-folder" alt="" />综合业务</a></li>
+						<li><a href=""><img src="themes/default/images/blank.gif" class="icon ico-32 ico-folder" alt="" />业务办理</a></li>
+					</ul>
+				</div>
+			</div>
+		<!-- 分类 End -->
+
+		<!-- 系统列表 -->
+			<div class="system-list-div">
+				<div class="system-list-box">
+				<div id="itemlist"><!--#载入系统列表#--></div>
+				</div>
+			</div>
+		<!-- 系统列表 End -->
+		</div>
+
+	</div>
+	
+<!-- 对话框 -->
+<div id="dialog-uncheck" style="display:none;">
+<div class="dialogbox" style="width:600px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">添加系统</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+		
+	<div class="item-row-scroll">
+	
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-1.png" width="48" alt=""/></dd>
+				<dt class="name">选课管理系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-add" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-2.png" width="48" alt=""/></dd>
+				<dt class="name">收费系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">监控系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-add" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-4.png" width="48" alt=""/></dd>
+				<dt class="name">场馆系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">门禁系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">门禁系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+	</div>
+			
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+<!-- 对话框 -->
+<div id="dialog-newCategroies" style="display:none;">
+<div class="dialogbox" style="width:400px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">添加分类</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<div class="d-innerbox">
+			<p><input type="input" class="textinput" style="width:98%" /></p>
+			</div>
+			<div style="height:40px;padding:20px 0 6px 10px">
+				<a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a>
+			</div>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

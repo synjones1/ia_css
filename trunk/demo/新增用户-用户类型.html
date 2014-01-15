@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户类型</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".typebg-a span").each(function(i,k){
+		var t = ($(k).parent().outerHeight()-$(k).outerHeight())/2;
+		$(k).css({"top":t + "px","width":$(k).parent().width()-30+"px","left":"15px"});
+	})
+	
+	$(window).resize(function(){
+		$(".usertype-wrap").css("min-height", $(window).height()-291 + "px");
+	})
+	$(".usertype-wrap").css("min-height", $(window).height()-291 + "px");
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-type" alt="" /><strong>选择用户类型</strong></div></div>
+<div class="formdiv" style="padding:0;border:1px solid #ccc;border-top:0;">
+	<div class="box">
+
+		<div class="usertype-wrap">
+
+			<ul class="usertype-ul">
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>学生帐户</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>教工帐户</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>校外人员</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>在校研究生</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>管理员</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>财务人员</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>学院学生</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>学院教工帐号</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>学院教工帐号</span></a></li>
+				<li><a class="sprite typebg-a" href="新增用户.html"><span>财务人员</span></a></li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

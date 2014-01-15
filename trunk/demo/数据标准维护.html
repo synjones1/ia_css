@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>数据标准维护</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+//分类高度控制
+	function attrFixHeight(){
+		$("#attr-box").height($(window).height() - 283).css("overflow-y","auto");
+	}
+	function catFixHeight(){
+		if($(window).height() < 664){
+			$(".categories .box").height("358");
+		}else{
+			$(".categories .box").height($("#attr-box").height() + 9).css("overflow-y","auto");
+		}
+	}
+	$(window).load(function(){attrFixHeight();catFixHeight()}).resize(function(){attrFixHeight();catFixHeight()});
+
+			$('#tt2').tree({
+				checkbox: true,
+				url: 'data/resourcetype.json',
+				onClick:function(node){
+					$(this).tree('toggle', node.target);
+					//alert('you click '+node.text);
+				},
+				onContextMenu: function(e, node){
+					e.preventDefault();
+					$('#tt2').tree('select', node.target);
+					$('#mm').menu('show', {
+						left: e.pageX,
+						top: e.pageY
+					});
+				}
+			});
+
+
+//下拉选择字典
+$('#cc').combobox({
+	editable:false,
+	width:350,
+	panelHeight:"auto"
+});
+
+
+$("#savefiled").click(function(){
+	new Dialog(loader("保存数据..."),{
+	time:1000,
+	showTitle:false,
+	afterClose:function(){
+		$('#saveform').show();$('#editform').hide();
+	}
+	})
+	.show();
+})
+
+});
+function remove(){  
+          var node = $('#tt2').tree('getSelected');  
+          $('#tt2').tree('remove', node.target);  
+      }  
+ function append(){  
+    var t = $('#tt2');  
+    var node = t.tree('getSelected');  
+    t.tree('append', {  
+        parent: (node?node.target:null),  
+        data: [{  
+            text: 'new item1'  
+        },{  
+            text: 'new item2'  
+        }]  
+    });  
+}  
+
+function edittree(){  
+    var node = $('#tt2').tree('getSelected');  
+    $('#tt2').tree('beginEdit', node.target);
+}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+	
+		<div class="toolsbar">
+			<a class="button btn-back" title="添加扩展信息" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加扩展信息</span><s></s></a>
+			<a class="button btn-delete" title="删除" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</span><s></s></a>
+		</div>
+		<div class="hr"></div>
+
+
+		<div class="dictionarydiv">
+			<!-- 分类 -->
+				<div class="categories" style="width:250px;">
+					<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>属性列表</strong></div><i class="sprite"></i></div>
+					<div class="box">
+						<div class="formdiv dictionary-form">
+							<ul id="tt2"></ul>
+							 <div id="mm" class="easyui-menu" style="width:120px;">  
+							       <div onclick="append()" data-options="iconCls:'icon-add'">添加</div>  
+							       <div onclick="edittree()" data-options="iconCls:'icon-edit'">编辑</div>  
+							       <div class="menu-sep"></div>  
+							       <div onclick="remove()" data-options="iconCls:'icon-remove'">删除</div>  
+							   </div>  
+
+						</div>
+					</div>
+				</div>
+			<!-- 分类 End -->
+
+		<!-- 数据列表 -->
+			<div class="system-list-div" style="padding-left:252px;">
+			
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dd>
+					<a class="button btn-back" title="编辑" onclick="$('#saveform').hide();$('#editform').show();"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />编辑</span><s></s></a>
+					<a class="button btn-back" title="保存" id="savefiled"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-save" alt="" />保存</span><s></s></a>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+<div style="padding:1px;border:1px solid #E7E7E7;border-top-color:#D1D1D1;" id="attr-box">
+<div class="formdiv" style="margin:0;">
+	<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable" id="saveform">
+			<tbody>
+				<tr>
+					<th width="160">必填：</th>
+					<td>是</td>
+				</tr>
+				
+				<tr>
+					<th>修改：</th>
+					<td>是</td>
+				</tr>
+				
+				<tr>
+					<th>显示：</th>
+					<td>是</td>
+				</tr>
+							
+				<tr>
+					<th>审核：</th>
+					<td>是</td>
+				</tr>
+								
+				<tr>
+					<th>查询：</th>
+					<td>是</td>
+
+				</tr>
+				<tr>
+					<th>岗位：</th>
+					<td>是</td>
+				</tr>
+				<tr>
+					<th>首次登录验证：</th>
+					<td>是</td>
+				</tr>
+				<tr>
+					<th>代码：</th>
+					<td>Name</td>
+				</tr>
+				<tr>
+					<th>值类型：</th>
+					<td>字符串</td>
+				</tr>
+				<tr>
+					<th>对应字典：</th>
+					<td>-</td>
+				</tr>
+				<tr>
+					<th>值长度：</th>
+					<td>32</td>
+				</tr>
+				<tr>
+					<th>校验规则：</th>
+					<td>-</td>
+				</tr>
+				<tr>
+					<th>默认值：</th>
+					<td>Null</td>
+				</tr>
+				<tr>
+					<th>所以身份：</th>
+					<td>学生, 教工</td>
+				</tr>
+				<tr>
+					<th>状态：</th>
+					<td>启用</td>
+				</tr>
+				
+				</tbody>
+			</table>
+			
+			<table cellspacing="0" cellpadding="10" class="formtable" id="editform" style="display:none;">
+			<tbody>
+				<tr>
+					<th width="160">必填：</th>
+					<td>
+				<select id="cc" name="state">
+					<option value="y">是</option>
+					<option value="n">否</option>
+				</select>
+</td>
+				</tr>
+				
+				<tr>
+					<th>修改：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+</td>
+				</tr>
+				
+				<tr>
+					<th>显示：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+					</td>
+				</tr>
+							
+				<tr>
+					<th>审核：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+					</td>
+				</tr>
+								
+				<tr>
+					<th>查询：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+					</td>
+
+				</tr>
+				<tr>
+					<th>岗位：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th>首次登录验证：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">是</option>
+						<option value="n">否</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th>代码：</th>
+					<td><input style="width: 340px;" class="textinput" type="text" value="Name"/></td>
+				</tr>
+				<tr>
+					<th>值类型：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">字符串</option>
+						<option value="n">数字</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th>对应字典：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">选择字典</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th>值长度：</th>
+					<td><input style="width: 340px;" class="textinput" type="text" value="32"/></td>
+				</tr>
+				<tr>
+					<th>校验规则：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">选择规则</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<th>默认值：</th>
+					<td><input style="width: 340px;" class="textinput" type="text" value="Null"/></td>
+				</tr>
+				<tr>
+					<th>所以身份：</th>
+					<td><input class="easyui-combotree" url="data/tree_data1.json" value="2" required="true" style="width:350px;" panelHeight="400" multiple="true"/></td>
+				</tr>
+				<tr>
+					<th>状态：</th>
+					<td>
+					<select class="easyui-combobox" name="state" style="width:350px;" panelHeight="auto">
+						<option value="y">启用</option>
+						<option value="n">未启用</option>
+					</select>
+					</td>
+				</tr>
+				
+				</tbody>
+			</table>
+			
+			
+		</div>
+	</div>
+</div>
+			</div>
+		<!-- 数据列表 End -->
+		</div>
+
+
+
+	</div>
+	
+
+
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

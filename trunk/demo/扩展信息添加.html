@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加扩展信息</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#sys-create").click(function(){
+	new Dialog(loader("提交数据..."),{
+	time:1000,
+	showTitle:false,
+	afterClose:function(){
+		dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();});
+	}
+	})
+	.show();
+})
+
+//下拉选择字典
+$('#cc').combobox({
+	editable:false,
+	width:420,
+	panelHeight:313
+});
+})
+function customOption(){
+	$('#tt').tabs({
+	    border:false,
+	    onSelect:function(title){   
+	      //  alert(title+' is selected');   
+	    }   
+	});
+}
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- 系统注册 -->
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+
+<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>添加扩展信息</strong></div><i class="sprite"></i></div>
+
+<div class="formdiv">
+	<div class="box">
+		<form id="roluForme" name="roluForme" action="">
+			<div class="repeat table-head"></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="150">属性Key：</th>
+				<td><input style="width: 410px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>默认值：</th>
+				<td><input style="width: 410px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>属性对应字典：</th>
+				<td>
+				<select id="cc" name="state">
+					<option value="AL">请选择要维护的字典</option>
+					<option value="AK">校/厂区</option>
+					<option value="AZ">部门信息</option>
+					<option value="AR">身份类别</option>
+					<option value="CA">操作员信息</option>
+					<option value="CO">国家/地区信息</option>
+					<option value="CT">民族信息</option>
+					<option value="DE">政治面貌</option>
+					<option value="FL">证件类型</option>
+				</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><div class="formtips" style="width:390px;"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-tips" alt="" />提示信息，提示信息！</div></td>
+			</tr>			
+			<tr>
+				<th>&nbsp;</th>
+				<td><br/>
+					<div><a class="button btn-save" id="sys-create" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+					<br/><br/><br/><br/><br/><br/>
+				</td>
+			</tr>
+		
+			
+			</tbody>
+			</table>
+			
+		</form>
+	</div>
+</div>
+<!-- Form End -->
+<!-- 系统注册End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">对话框</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<p class="show-tips-info"><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" />系统注册成功，等待管理员审核！<br/><a href="main.html">返回首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">继续注册</a></p>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

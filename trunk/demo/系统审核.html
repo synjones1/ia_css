@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统审核</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+/* 语言 */
+if ($.fn.pagination){
+	$.fn.pagination.defaults.beforePageText = '第';
+	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+}
+
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data2.json',
+				title: false,
+				width: "auto",
+				fit: true,
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				pagination:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'name',title:'系统名称',width:80},
+					{field:'id',title:'系统ID',width:80},
+					{field:'apiurl',title:'接口地址',width:120},
+					{field:'ip',title:'服务器IP',width:80},
+					{field:'description',title:'系统描述',width:250},
+					{field:'status',title:'状态',width:60,align:'center',
+					styler:function(value,row,index){
+						if(value == "已认证"){
+							return 'color:#1CC112;';
+						}else if(value == "未认证"){
+							return 'color:#f00;';
+						}
+					}
+					},
+					{field:'action',title:'操作',width:60,
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="javascript:actionStatus(\'正在停止\')" title="停止"><img src="themes/default/images/blank.gif" class="icon ico-stop" alt="停止" /></a> <a href="javascript:actionStatus(\'正在启用\')" title="启用"><img src="themes/default/images/blank.gif" class="icon ico-enabled" alt="启用" /></a> <a href="checkview.html" title="查看"><img src="themes/default/images/blank.gif" class="icon ico-view" alt="查看" /></a>';
+					}}
+				]],
+				onRowContextMenu:function(e, rowIndex, rowData){
+				//右键菜单
+				e.preventDefault();
+					$('#mm').menu('show',{
+						left: e.pageX,
+						top: e.pageY
+					});
+				}
+			});
+//拒绝审核
+	$("#uncheck").click(function(){
+		dlg = new Dialog({type:"id",value:"dialog-uncheck"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();})
+	})
+
+
+
+
+});
+function actionStatus(LoadingText){
+	new Dialog(loader(LoadingText),{
+					time:1000,
+					showTitle:false
+				})
+				.show();
+}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+		
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="审核" type="button"><i></i><span>审核</span><s></s></a>
+	<a class="button btn-back" id="uncheck" title="审核" type="button"><i></i><span>拒绝</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- 列表 -->
+
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dd><select class="select"><option>系统类型</option><option>业务系统</option><option>收费系统</option></select></dd>
+			<dd><select class="select"><option>状态</option><option>未认证</option><option>已认证</option></select></dd>
+			<dd><a class="button btn-save" title="查询" type="button"><i></i><span>查 询&nbsp;</span><s></s></a></dd>
+		</dl>
+	</div>
+</div>
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+
+<!-- 列表 End -->
+	</div>
+	
+<!-- 对话框 -->
+<div id="dialog-uncheck" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">对话框</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-tips">批量审核会使用同一个备注!</div>
+		<div class="d-innerbox">
+		<p style="padding:0 0 5px;">备注：</p>
+		<p><textarea cols="36"></textarea></p>
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 右键菜单 -->
+	<div id="mm" class="easyui-menu" style="width:120px;">
+		<div iconCls="icon ico-edit">
+			<span>操作</span>
+			<div style="width:150px;">
+				<div>查看详细</div>
+				<div>启用</div>
+				<div>停用</div>
+				<div iconCls="icon ico-list">
+					<span>更多选项</span>
+					<div style="width:120px;">
+						<div>sub1</div>
+						<div>sub2</div>
+						<div>
+							<span>Sub</span>
+							<div style="width:80px;">
+								<div onclick="javascript:alert('sub21')">sub21</div>
+								<div>sub22</div>
+								<div>sub23</div>
+							</div>
+						</div>
+						<div>sub3</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div iconCls="icon ico-form">查看详细</div>
+		<div class="menu-sep"></div>
+		<div iconCls="icon ico-import">Exit</div>
+	</div>
+<!-- End -->
+
+</body>
+</html>

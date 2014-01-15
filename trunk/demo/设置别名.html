@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>设置别名</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+$(function() {
+//拒绝审核
+	$("#uncheckAll").click(function(){
+		$('#show-batchbox').dialog('open');
+	})
+
+	$('#show-batchbox').dialog({
+	    title: '设置别名',  
+	    width: 450,
+	    height: "auto",
+	    closed: true,
+	    cache: false,
+	    modal: true
+	});
+	$(".dl-list").find("input").each(function(i,k){
+		
+		$(k).focus(function(){
+			$(k).parent().parent().addClass("hover")
+		});
+		$(k).blur(function(){
+			$(k).parent().parent().removeClass("hover")
+		});
+		
+	})
+});
+</script>
+</head>
+<body>
+<div id="content">
+
+	<a class="button btn-back" title="设置别名" id="uncheckAll"><i></i><span>设置别名</span><s></s></a>
+
+<div class="clearfix"></div>
+</div>
+
+
+
+<div id="show-batchbox" class="setName-panel" style="display:block;">
+	<div class="box">
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />基本属性</h4>
+		<div class="dl-list">
+			<dl>
+				<dt>卡号</dt><dt>Cardno</dt><dd><input type="text" value="son" /></dd>
+			</dl>
+			<dl>
+				<dt>证件类型</dt><dt>Idtype</dt><dd><input type="text" value="Idtype" /></dd>
+			</dl>
+		</div>
+		
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />扩展属性</h4>
+		<div class="dl-list">
+			<dl>
+				<dt>出生日期</dt><dt>Dayth</dt><dd><input type="text" value="Dayth" /></dd>
+			</dl>
+			<dl>
+				<dt>籍贯</dt><dt>Jiguan</dt><dd><input type="text" value="Jiguan" /></dd>
+			</dl>		
+			<dl>
+				<dt>入校时间</dt><dt>Dayth</dt><dd><input type="text" value="Dayth" /></dd>
+			</dl>
+			<dl>
+				<dt>院系</dt><dt>Jiguan</dt><dd><input type="text" value="Jiguan" /></dd>
+			</dl>
+		</div>
+
+	</div>
+</div>
+
+</body>
+</html>

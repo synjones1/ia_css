@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+//用户列表
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data4.json',
+				title: false,
+				width: "auto",
+				fit: true,
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				pagination:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'number',title:'学号',width:80},
+					{field:'name',title:'姓名',width:80},
+					{field:'sex',title:'性别',width:120,formatter:function(value,rowData,rowIndex){
+						if(value=="1")
+							return '男';
+						else if(value=='2')
+							return '女';
+						else
+							return '-';
+					}},
+					{field:'identity',title:'身份',width:80},
+					{field:'faculty',title:'所属院系',width:250},
+					{field:'action',title:'操作',width:50,
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="#" title="删除"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="删除" /></a> <a href="#" title="编辑"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="编辑" /></a>';
+					}}
+				]]
+			});
+//院系
+$('#faculty').propertygrid({
+	width:"auto",
+	height:$(".system-list-div").height()-40,
+	border:false,
+	url:'data/data5.json',
+	showGroup:true,
+	scrollbarSize:0,columns: [[{ field: 'name', title: '院系',  resizable: false }]],
+	fitColumns: true,
+	showHeader:false
+
+});
+
+
+//左边高度控制
+	function catFixHeight(){
+		if($(window).height() < 664){
+			$(".categories .box").height($(".system-list-div").height()-38);
+		}else{
+			$(".categories .box").height($(".system-list-div").height()-38);
+		}
+	}
+	$(window).load(catFixHeight).resize(catFixHeight);
+
+			
+//文件导入
+$("#change-email").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+		
+//鼠标经过行
+	$(".temp-table tbody tr").hover(function(){
+		$(this).addClass("hoverrow");
+	},function(){
+		$(this).removeClass("hoverrow");
+	})
+})
+
+
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="新增用户" href="新增用户.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />新增用户</span><s></s></a>
+		<a class="button btn-back" title="文件导入" id="change-email"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-import" alt="" />文件导入</span><s></s></a>
+		<a class="button btn-back" title="删除"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+<div class="catdiv">
+		<!-- 院系 -->
+			<div class="categories">
+				<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>所属院系</strong></div><i class="sprite"></i></div>
+				<div class="box">
+					<table id="faculty"></table>
+				</div>
+			</div>
+		<!-- 院系 End -->
+		<!-- 系统列表 -->
+			<div class="system-list-div">
+<!-- 筛选 -->
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dt><input type="radio" class="radio" name="d" id="num" /><label for="num">学工号</label></dt>
+			<dt><input type="radio" class="radio" name="d" id="card" /><label for="card">卡号</label></dt>
+			<dt><input type="radio" class="radio" name="d" id="name" /><label for="name">姓名</label></dt>
+			<dd><input type="text" class="textinput" name="d" /></dd>
+			<dd><a class="button btn-save" title="查询" type="button"><i></i><span>查 询&nbsp;</span><s></s></a></dd>
+		</dl>
+	</div>
+</div>
+<!-- 筛选End -->
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+
+			</div>
+		<!-- 系统列表 End -->
+
+</div>
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:700px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">导入文件</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-tips">支持CSV、Text、XLS文件导入，单个文件不得超过<span style="color:red">10M</span>！</div>
+		<div class="d-innerbox">
+			<dl class="filetype">
+				<dd><a class="button btn-simple" title="添加文件">添加文件</a></dd>
+				<dt>
+					<input type="radio" class="radio" name="f" id="f1" /><label for="f1">CSV</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" class="radio" name="f" id="f2" /><label for="f2">Text</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="radio" class="radio" name="f" id="f3" /><label for="f3">JSON</label>&nbsp;&nbsp;&nbsp;&nbsp;
+				</dt>
+			</dl>
+			<div style="color:#707070;">dasyus2012.csv</div>
+			<a href="#" style="float:right;color:blue;margin-right:15px;">取消</a>
+			<div style="width: 90%;" class="progressbar"><div class="progressbar-text" style="width: 398px;">0%</div><div class="progressbar-value" style="width: 10%;">&nbsp;</div></div>
+			<div class="uploadinfo">已上传：2.34MB&nbsp;&nbsp;&nbsp;&nbsp;速度：85.45KB/秒&nbsp;&nbsp;&nbsp;&nbsp;剩余时间：00:12:23</div>
+		</div>
+			<table cellspacing="1" width="100%" class="temp-table">
+				<thead>
+				<tr>
+					<th>学工号</th><th>姓名</th><th>性别</th><th>身份</th><th>院系</th><th class="align-center">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>0215555554</td><td>黄右</td><td>男</td><td>研究生</td><td>金融与经济学</td><td class="align-center"><input type="checkbox" class="checkbox" /></td>
+				</tr>
+				<tr class="erow">
+					<td>0215555554</td><td>黄右</td><td>男</td><td>研究生</td><td>金融与经济学</td><td class="align-center"><input type="checkbox" class="checkbox" /></td>
+				</tr>
+				<tr>
+					<td>0215555554</td><td>黄右</td><td>男</td><td>研究生</td><td>金融与经济学</td><td class="align-center"><input type="checkbox" class="checkbox" /></td>
+				</tr>
+				<tr class="erow">
+					<td>0215555554</td><td>黄右</td><td>男</td><td>研究生</td><td>金融与经济学</td><td class="align-center"><input type="checkbox" class="checkbox" /></td>
+				</tr>
+				<tr>
+					<td>0215555554</td><td>黄右</td><td>男</td><td>研究生</td><td>金融与经济学</td><td class="align-center"><input type="checkbox" class="checkbox" /></td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="d-button-row">
+				<a class="button btn-save dlg-confirm" title="导入"><i></i><span>导入数据&nbsp;</span><s></s></a>
+				<a href="#" class="d-button-right"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />清空列表</a>
+			</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

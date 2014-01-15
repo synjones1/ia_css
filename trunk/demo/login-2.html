@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录</title>
+<link href="themes/default/login-2.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script src="scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+$(function(){
+//Input 检测
+	$("#action_login").click(function(){
+		$(".requset").each(function(i,o){
+			if($(o).val()==''){
+				$(this).addClass('input-error');
+				$(".request-msg").show().text("用户名称或密码不能为空!");
+			}else{
+				$(this).removeClass('input-error');
+				$(".request-msg").hide();
+			//	window.location.href="main.html";
+			}
+
+		});
+	
+	});
+	
+//弹出身份
+$('#add-exinfo').dialog({
+    title: '请选择登录身份',  
+    width: 350,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true,
+    onOpen:function(){
+		$('#cc2').combobox({width:390});
+    	
+    }
+});  
+$("#action_login").click(function(){
+	$('#add-exinfo').dialog('open');
+})
+})
+</script>
+</head>
+<body class="min-body">
+<div id="header">
+	<h1 class="logo-min"><img src="themes/default/images/logo-min.gif"/></h1>
+	<div class="login-tittle-min">理工电子身份证</div>
+</div>
+
+<div class="loginbody-min">
+
+<!-- Login Box -->
+	<div id="loginbox">
+	
+		<div class="loginbanner"><img src="themes/default/images/loginbanner.png"/></div>
+		<div class="loginForm">
+					<div class="up"></div>
+			<div class="outbox">
+				<div class="sprite request-msg"></div>
+				<div class="fieldbox">
+					<div class="innerbox filed-min">
+					
+						
+						<dl>
+							<dt>用户名：</dt>
+							<dd><input type="text" name="userName" class="textinput requset user-input uncolor" value="学工号/手机/卡号" /></dd>
+						</dl>
+						
+						<dl>
+							<dt>登录密码：</dt>
+							<dd><input type="password" name="userPasword" class="textinput requset" /></dd>
+						</dl>
+						
+						<dl class="codedl">
+							<dt>验证码：</dt>
+							<dd><input name="userName" class="textinput" style="width:80px;"  /></dd>
+							<dd><span class="code-img"><img src="images/typecode.jpg" alt="验证码" height="32" /></span></dd>
+							<dt style="width:auto;"><a href="#" class="change-code" title="看不清楚？" style="padding:0 0 0 10px;">刷新验证码</a></dt>
+						</dl>
+						
+						
+						<dl class="login-botton">
+							<dd><input type="image" src="themes/default/images/ss_login.png" alt="登录" id="action_login" height="37" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="image" src="themes/default/images/cancel.png" alt="取消" /></dd>
+						</dl>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+		<div class="down"></div>
+			<br/>
+				<div class="logintips-min"><strong>提示：</strong><br/>本登录认证窗口须用全校统一的“新中新电子身份证”账户进行认证。<div style="padding:2px 0 0 0;line-height:24px;">关于“理工电子身份证”账户，请参见<a href="关于.html" target="_blank" style="color:#0087BE;"><u>帮助</u></a>。</div>
+</div>
+		</div>
+		
+		
+
+	</div>
+<!-- Login Box End -->
+
+</div>
+<br/><br/>
+<!--copyright-->
+
+<div id="add-exinfo">
+	<ul class="change-id">
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">黄德吸 (0932892839849)</span>普通本科</a></li>
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">周翔 (0932892839849)</span>教工</a></li>
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">李东东 (0932892839849)</span>普通本科</a></li>
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">周翔 (0932892839849)</span>普通本科</a></li>
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">李东东 (0932892839849)</span>研究生</a></li>
+		<li><a href="javascript:void(0)" class="id-item"><span class="n">周翔 (0932892839849)</span>普通本科</a></li>
+	</ul>
+</div>
+
+
+<div class="positiontips">
+	<a class="colosep" href="javascript:void(0)"><img src="themes/default/images/colose.png"/></a>
+	<h6><img src="themes/default/images/tipsico.png"/>提示</h6>
+	<div class="boxtips">
+提示信息,提示信息提示信息提示信息
+提示信息提示信息
+	</div>
+</div>
+
+</body>
+</html>

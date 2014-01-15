@@ -1,0 +1,272 @@
+﻿
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css"	href="/ias/resource/themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+</head>
+<body>
+	<form action="" method="post" id="jsonForm">
+		<input type="hidden" id="jsonPara" name="jsonPara" />
+	</form>
+
+	<!-- 操作提示对话框 -->
+	<div id="actionTip" style="display:none;">
+		<div class="dialogbox" style="width:350px;">
+			<div class="d-head">
+				<i class="sprite"></i>
+				<div class="repeat d-head-box">操作提示</div>
+				<a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s
+					class="sprite"></s>
+			</div>
+			<div class="d-main">
+				<div class="d-innerbox">
+					<br />
+					<table align="center">
+						<tr>
+							<td><img
+								src="/ias/resource/themes/default/images/blank.gif"
+								class="icon ico-confirm-b" alt="" />
+							</td>
+							<td><span id="tipMsg"></span>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><br />
+								<div class="confirm-button-arrow">
+									<a class="button btn-small" id="msgDivConfirm" title="确定"><i></i><span>确定&nbsp;</span><s></s>
+									</a> <a id="msgDivCancel" class="button btn-small dlg-cancel"
+										title="取消"><i></i><span>取消&nbsp;</span><s></s> </a>
+								</div></td>
+						</tr>
+					</table>
+					<br />
+				</div>
+			</div>
+			<div class="d-bottom">
+				<i class="sprite"></i>
+				<div class="d-bottom-box"></div>
+				<s class="sprite"></s>
+			</div>
+		</div>
+	</div>
+	<!-- 对话框End -->
+
+</body>
+</html>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>找回密码</title>
+</head>
+<body>
+	<div id="header">
+		<!--#载入头部#-->
+	</div>
+	<input type="hidden" id="errorMsg" value="" />
+	<div id="content">
+
+		<div id="mainbox">
+
+			<br />
+			<!-- 步骤 -->
+			<div class="setupdiv" id="setupdiv">
+				<ul>
+					<li class="current">第一步：完善安全信息<span class="sprite excision"></span>
+					</li>
+					<li>第二步：继续办理业务<span class="sprite excision"></span></li>
+				</ul>
+			</div>
+			<!-- 步骤End -->
+
+			<!-- Form -->
+
+			<br />
+			<div class="formdiv">
+				<div class="box">
+					<div class="repeat table-head" style="font-size:16px;"><div>欢迎登录，请先完善您的账户安全信息再进行后续操作</div></div>
+
+					<!-- setup 1 -->
+					<div id="setup-1">
+					
+						<div style="background-color:#fff;border:1px dashed #ccc;font-size:14px;color:blue;margin:5px;">
+							<div style="background:url(images/livechat.png) 10px center no-repeat #FFFFEE;margin:2px;overflow:hidden;padding:6px 10px;padding-left:70px;line-height:24px;">
+								<p>为方便找回密码，请务必准备完善个性化信息。</p>
+								<p>如有疑问请联系理工电子身份证在线服务：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2489374507&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2489374507:41" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></p>
+								<p>服务邮件：<a style="color:blue;" href="mailto:sfwebmaster@whut.edu.cn">sfwebmaster@whut.edu.cn</a>。</p></div>
+						</div>
+						<form id="step1Fm" name="step1Fm" method="post"
+							action="/ias/login!fillInfo">
+							<input type="hidden" name="ssoticketid" id="ssoticketid"
+								value="8e594b7fd262936f40197cf7b4c10c30" /> <input type="hidden"
+								name="continueurl" id="continueurl" value="http://202.114.93.213:8080/iaweb/showIndex" /><input
+								type="hidden" name="sysid" id="sysid" value="portal_233" />
+							<table cellspacing="0" cellpadding="10" class="formtable">
+								<tbody>
+									<tr>
+										<th>用户名：</th>
+										<td><input type="text" value="" id="username"
+											maxlength="20" validType="codeStyle" required="true"
+											name="userBaseBean.username"
+											class="textinput easyui-validatebox" style="width:300px;" />
+											您可以使用此名称来登录本系统</td>
+									</tr>
+									<tr>
+										<th>手机：</th>
+										<td><input type="text" value="" id="mobile" maxlength="15"
+											validType="mobile" required="true" name="userBaseBean.mobile"
+											class="textinput easyui-validatebox" style="width:300px;" />
+										</td>
+									</tr>
+									<tr>
+										<th>安全邮箱：</th>
+										<td><input type="text" value="" id="email" maxlength="50"
+											validType="email" required="true" name="userBaseBean.email"
+											class="textinput easyui-validatebox" style="width:300px;" />
+										</td>
+									</tr>
+									<tr>
+										<th>安全问题一：</th>
+										<td><select class="select" name="userSecurityBean.q1"
+											required="true" id="q1" style="width:310px;"><option
+													value="">请您选择一个问题...</option>
+												<option value="1">我就读的第一所学校的名称</option>
+												<option value="2">我最喜欢的休闲运动是什么</option>
+												<option value="3">我最喜欢的运动员是谁</option>
+												<option value="4">我的宠物的名字</option>
+												<option value="5">我手机号码的后6位</option>
+												<option value="6">我母亲的生日</option>
+												<option value="7">我父亲的生日</option>
+												<option value="8">我最好朋友的生日</option>
+										</select>
+										<script type="text/javascript">
+										if (''!='') {
+										document.getElementById("q1").value='';
+										}
+										</script>
+										</td>
+									</tr>
+
+									<tr>
+										<th>安全问题答案一：</th>
+										<td><input type="text" value="" id="a1" maxlength="20"
+											required="true" name="userSecurityBean.a1"
+											class="textinput easyui-validatebox" style="width:300px;" />
+										</td>
+									</tr>
+
+									<tr>
+										<th>安全问题二：</th>
+										<td><select class="select" name="userSecurityBean.q2"
+											required="true" id="q2" style="width:310px;"><option
+													value="" selected="selected">请您选择一个问题...</option>
+												<option value="9">我儿时居住地的地址</option>
+												<option value="10">我小学校名全称</option>
+												<option value="11">我中学校名全称</option>
+												<option value="12">我的座右铭是</option>
+												<option value="13">我最喜爱的电影</option>
+												<option value="14">我最喜爱的歌曲</option>
+												<option value="15">我最喜爱的食物</option>
+												<option value="16">我最大的爱好</option>
+										</select>
+										<script type="text/javascript">
+										if (''!='') {
+										document.getElementById("q2").value='';
+										}
+										</script>
+										</td>
+									</tr>
+
+									<tr>
+										<th>安全问题答案二：</th>
+										<td><input type="text" value="" id="a2" maxlength="20"
+											required="true" name="userSecurityBean.a2"
+											class="textinput easyui-validatebox" style="width:300px;" />
+										</td>
+									</tr>
+
+									<tr>
+										<th>&nbsp;</th>
+										<td><a class="button btn-save" id="sys-create"
+											title="下一步"><i></i><span>下一步&nbsp;</span><s></s> </a> <br />
+									</tr>
+								</tbody>
+							</table>
+
+						</form>
+					</div>
+					<!-- setup 1 End -->
+
+					<!-- setup 3 -->
+					<div id="setup-2" style="display:none;">
+						<table cellspacing="0" cellpadding="10" class="formtable">
+							<tbody>
+								<tr>
+									<th style="text-align: center;"><br /> <br /> <br /> <br />验证邮件已发送，请您登录邮箱完成验证。<br />
+										<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
+										<br /> <br /></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- setup 3 End -->
+				</div>
+			</div>
+			<!-- Form End -->
+
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+
+	<div id="footer">
+		<!--#载入底部版权#-->
+	</div>
+
+	<!-- 对话框 -->
+	<div id="return-sucess" style="display:none;">
+		<div class="dialogbox" style="width:350px;">
+			<div class="d-head">
+				<i class="sprite"></i>
+				<div class="repeat d-head-box">提示信息</div>
+				<a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s
+					class="sprite"></s>
+			</div>
+			<div class="d-main">
+				<div class="d-innerbox">
+					<br />
+					<table align="center">
+						<tr>
+							<td><img
+								src="/ias/resource/themes/default/images/blank.gif"
+								class="icon ico-success-b" alt="" /></td>
+							<td>您的信息已发送至您的邮箱。<br />请注意查收。</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><br /> <a class="button btn-small dlg-confirm"
+								title="查收邮件"><i></i><span>确定&nbsp;</span><s></s> </a></td>
+						</tr>
+					</table>
+					<br />
+				</div>
+			</div>
+			<div class="d-bottom">
+				<i class="sprite"></i>
+				<div class="d-bottom-box"></div>
+				<s class="sprite"></s>
+			</div>
+		</div>
+	</div>
+	<!-- 对话框End -->
+	<script type="text/javascript"
+		src="/ias/resource/js/user/secure/fillInfo.js"></script>
+</body>
+</html>

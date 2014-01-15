@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>查看信息</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery-powerFloat-min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data3.json',
+				title: false,
+				width: "auto",
+				height: 200,
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				columns:[[
+					{field:'name',title:'操作人姓名',width:80},
+					{field:'id',title:'学号',width:80},
+					{field:'apiurl',title:'操作时间',width:120},
+					{field:'action',title:'操作内容',width:50}
+				]]
+			});
+//拒绝审核
+	$("#uncheck").click(function(){
+		dlg = new Dialog({type:"id",value:"dialog-uncheck"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();})
+	})
+	
+//查看详细
+	$("#trigger1").powerFloat({width:400,offsets:{x:'0',y:"10"},edgeAdjust:false});
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- 系统注册 -->
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="审核" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-check-1" alt="" />审核</span><s></s></a>
+	<a class="button btn-back" id="uncheck" title="审核" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-no" alt="" />拒绝</span><s></s></a>
+	<a class="button btn-back" id="uncheck" title="审核" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-stop" alt="" />停用</span><s></s></a>
+	<a class="button btn-back" id="uncheck" title="审核" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-enabled" alt="" />启用</span><s></s></a>
+	<a class="button btn-back" id="uncheck" title="审核" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />编辑</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+
+<div class="head"><s class="sprite"></s><div class="head-box repeat">
+	<dl class="sys-headline">
+		<dt><img src="images/item-1.png" alt=""/></dt>
+		<dd><h3>选课管理系统</h3>
+		<div>状&nbsp;&nbsp;&nbsp;&nbsp;态 ：
+		<img src="themes/default/images/blank.gif" class="icon ico-uncheck" alt="" />未认证
+		<img src="themes/default/images/blank.gif" class="icon ico-check" alt="" />已认证
+		<img src="themes/default/images/blank.gif" class="icon ico-stoped" alt="" />已停用
+		<img src="themes/default/images/blank.gif" class="icon ico-noed" alt="" />已拒绝
+		</div>
+		</dd>
+	</dl>
+</div><i class="sprite"></i></div>
+
+<div class="formdiv">
+	<div class="box">
+			<div class="repeat table-head"><div>系统信息</div></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<col width="14%" />
+			<col width="36%" />
+			<col width="14%" />
+			<col width="36%" />
+			<tbody>
+			<tr>
+				<th>系统名称：</th>
+				<td>选课管理系统</td>
+				<th>服务器 IP：</th>
+				<td>120.90.0.223</td>
+			</tr>
+			
+			<tr>
+				<th>系统 ID：</th>
+				<td>438743</td>
+				<th>返回内容：</th>
+				<td><a href="javascript:void(0)" id="trigger1" rel="show-detai-box"><img src="themes/default/images/blank.gif" class="icon ico-view" alt="" /><u class="blue">详细</u></a></td>
+			</tr>
+			
+			<tr>
+				<th>接口地址：</th>
+				<td>ttps://10.128.0.20:8080</td>
+				<th>返回数据类型：</th>
+				<td>JSON</td>
+			</tr>
+			
+			
+			<tr>
+				<th>系统描述：</th>
+				<td>-</td>
+				<th></th>
+				<td></td>
+			</tr>
+
+			</tbody>
+			</table>
+	</div>
+</div>
+
+<div id="tb" class="easyui-tabs" tools="#tab-tools" plain="false" fit="">
+
+		<div title="系统认证">
+<div class="formdiv" style="margin-bottom:0;margin-top:1px;">
+	<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<col width="14%" />
+			<col width="36%" />
+			<col width="14%" />
+			<col width="36%" />
+			<tbody>
+			<tr>
+				<th>注册人：</th>
+				<td>选课管理系统</td>
+				<th>服务器 IP：</th>
+				<td>120.90.0.223</td>
+			</tr>
+			
+			
+			<tr>
+				<th>接口地址：</th>
+				<td>ttps://10.128.0.20:8080</td>
+				<th>返回数据类型：</th>
+				<td>JSON</td>
+			</tr>
+			
+			
+			<tr>
+				<th>系统描述：</th>
+				<td>-</td>
+				<th></th>
+				<td></td>
+			</tr>
+
+			</tbody>
+			</table>
+	</div>
+</div>
+		
+		</div>
+		<div title="数据接入">
+<div class="formdiv" style="margin-bottom:0;margin-top:1px;">
+	<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<col width="14%" />
+			<col width="36%" />
+			<col width="14%" />
+			<col width="36%" />
+			<tbody>
+			<tr>
+				<th>数据类型：</th>
+				<td>选课管理系统</td>
+				<th>服务器 IP：</th>
+				<td>120.90.0.223</td>
+			</tr>
+			
+			
+			<tr>
+				<th>接口地址：</th>
+				<td>ttps://10.128.0.20:8080</td>
+				<th>返回数据类型：</th>
+				<td>JSON</td>
+			</tr>
+			
+			
+			<tr>
+				<th>系统描述：</th>
+				<td>-</td>
+				<th></th>
+				<td></td>
+			</tr>
+
+			</tbody>
+			</table>
+	</div>
+</div>
+		</div>
+</div>
+
+<div class="formdiv" style="margin-top:10px;">
+	<div class="box">
+			<div class="repeat table-head"><div>注册信息</div></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<col width="14%" />
+			<col width="36%" />
+			<col width="14%" />
+			<col width="36%" />
+			<tbody>
+			<tr>
+				<th>注册人：</th>
+				<td>黄大拿</td>
+				<th>学工号：</th>
+				<td>2321323213</td>
+			</tr>
+			
+			<tr>
+				<th>注册时间：</th>
+				<td>2012-10-12 11：21：34</td>
+				<th>IP 地址：</th>
+				<td>120.20.22.143</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>&nbsp;</td>
+				<th>&nbsp;</th>
+				<td>&nbsp;</td>
+			</tr>
+			
+			
+
+			</tbody>
+			</table>
+			<div class="repeat table-head"><div>操作信息</div></div>
+			<table id="tt"></table>
+	</div>
+</div>
+<!-- Form End -->
+<!-- 系统注册End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 对话框 -->
+<div id="dialog-uncheck" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">对话框</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-tips">批量审核会使用同一个备注!</div>
+		<div class="d-innerbox">
+		<p style="padding:0 0 5px;">备注：</p>
+		<p><textarea cols="36"></textarea></p>
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+<!-- 返回内容结构 -->
+<div id="show-detai-box" class="batch-fieldchange-panel">
+	<span class="sprite panel-close" title="关闭" onclick="$('#show-batchbox').hide();">关闭</span>
+	<div class="box">
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-list" alt="" />返回内容结构</h4>
+		<div class="code-box">
+		<div class="code-innerbox">
+		
+<xmp>
+<countries>
+	<country>
+		<text>China</text>
+		<value>C</value>
+	</country>
+	<country>
+		<text>Sweden</text>
+		<value>S</value>
+	</country>
+	<country>
+		<text>France</text>
+		<value>F</value>
+	</country>
+	<country>
+		<text>Italy</text>
+		<value>I</value>
+	</country>
+</countries>
+</xmp>
+		</div>
+		</div>
+		
+
+
+	</div>
+</div>
+<!-- 返回内容结构 End -->
+
+
+</body>
+</html>

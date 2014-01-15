@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>身份认证中心</title>
+<link href="themes/default/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery-powerFloat-min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+	var LoadingText = "加载";
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+	$("#itemlist").load("include/item-1.html",function(){fixScrollHeight();ItemHover();Itemscroll();$('.mycategories .scrollpanel').tinyscrollbar({sizethumb:20,size:210,wheel:40})});/*默认载入我的工作台*/
+	$(window).resize(function(){fixScrollHeight();ItemHover();Itemscroll();$('.mycategories .scrollpanel').tinyscrollbar({sizethumb:20,size:210,wheel:40})})
+	SystemType(".system-type","#itemlist");/*系统分类*/
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content" class="fixheight fixbackground">
+
+	<div id="mainbox" style="border-left:1px solid #E3F1F1;border-right:1px solid #E3F1F1">
+		
+		<div id="itemlist"><!--#载入系统列表#--></div>
+		<!-- 系统分类 -->
+		<div class="system-type">
+			<ul>
+				<li class="hover">
+					<a class="loadPage" href="include/item-1.html"></a>
+					<dl>
+						<dt><img src="themes/default/images/blank.gif" class="icon ico-32 ico-mywork" alt="" /></dt>
+						<dd>我的工作台</dd>
+					</dl>
+				</li>
+				<li class="sprite h-line">&nbsp;</li>
+				<li class="li-type">
+					<a class="loadPage" href="include/item-2.html"></a>
+					<dl>
+						<dt><img src="themes/default/images/blank.gif" class="icon ico-32 ico-type3" alt="" /></dt>
+						<dd>收费业务</dd>
+					</dl>
+				</li>
+				<li class="sprite h-line">&nbsp;</li>
+				<li class="li-type">
+					<a class="loadPage" href="include/item-3.html"></a>
+					<dl>
+						<dt><img src="themes/default/images/blank.gif" class="icon ico-32 ico-type1" alt="" /></dt>
+						<dd>综合业务</dd>
+					</dl>
+				</li>
+				<li class="sprite h-line">&nbsp;</li>
+				<li class="li-type">
+					<a class="popup-categories" href="javascript:void(0);" rel="mydydtem"></a>
+					<dl>
+						<dt><img src="themes/default/images/blank.gif" class="icon ico-32 ico-folder-2" alt="" /></dt>
+						<dd>我的分类</dd>
+					</dl>
+				</li>
+				<li class="sprite h-line">&nbsp;</li>
+				<li class="li-type">
+					<a class="popup-system" href="javascript:void(0);" rel="allsystem"></a>
+					<dl>
+						<dt><img src="themes/default/images/blank.gif" class="icon ico-32 ico-type2" alt="" /></dt>
+						<dd>所有应用</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 系统分类 End -->
+		
+	</div>
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 所有系统 End -->
+<div id="allsystem" class="popupdiv">
+	<div class="popup-up"><div class="m"><div class="edge"></div></div><i class="sprite"></i><s class="sprite"></s></div>
+	<div class="popupbox">
+		<div class="popup-content">
+		
+			<div class="mycategories">
+		
+			<div class="scrollpanel" style="border:0px solid red;">
+			<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+			<div class="viewport">
+				 	<div class="system-line" style="left:25%;"></div>
+				 	<div class="system-line" style="left:50%;"></div>
+				 	<div class="system-line" style="left:75%;"></div>
+				 <div class="overview" style="width:100%;">
+				 
+				 
+					<ul class="system-item">
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-8.png" width="32" alt=""/></dt>
+								<dd>综合业务管理</dd>
+							</dl>
+						</li>			
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-1.png" width="32" alt=""/></dt>
+								<dd>选课管理系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-3.png" width="32" alt=""/></dt>
+								<dd>监控系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-4.png" width="32" alt=""/></dt>
+								<dd>场馆系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-3.png" width="32" alt=""/></dt>
+								<dd>监控系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-4.png" width="32" alt=""/></dt>
+								<dd>场馆系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-8.png" width="32" alt=""/></dt>
+								<dd>综合业务管理</dd>
+							</dl>
+						</li>			
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-1.png" width="32" alt=""/></dt>
+								<dd>选课管理系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-8.png" width="32" alt=""/></dt>
+								<dd>综合业务管理</dd>
+							</dl>
+						</li>			
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-1.png" width="32" alt=""/></dt>
+								<dd>选课管理系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-3.png" width="32" alt=""/></dt>
+								<dd>监控系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-4.png" width="32" alt=""/></dt>
+								<dd>场馆系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-3.png" width="32" alt=""/></dt>
+								<dd>监控系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-4.png" width="32" alt=""/></dt>
+								<dd>场馆系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-8.png" width="32" alt=""/></dt>
+								<dd>综合业务管理</dd>
+							</dl>
+						</li>			
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-1.png" width="32" alt=""/></dt>
+								<dd>选课管理系统</dd>
+							</dl>
+						</li>
+						<li>
+							<a href="#"></a>
+							<dl>
+								<dt><img src="images/item-2.png" width="32" alt=""/></dt>
+								<dd>收费系统</dd>
+							</dl>
+						</li>
+					</ul>
+			</div>
+			
+			</div>
+			</div>
+			</div>
+			
+
+		</div>
+	</div>
+	<div class="popup-bottom"><span class="point sprite"></span><div class="m"><div class="edge"></div></div><i class="sprite"></i><s class="sprite"></s></div>
+</div>
+<!-- 所有系统 End -->
+
+<div id="mydydtem" class="popupdiv">
+	<div class="popup-up"><div class="m"><div class="edge"></div></div><i class="sprite"></i><s class="sprite"></s></div>
+	<div class="popupbox">
+		<div class="popup-content">
+			
+				
+					<ul class="categories-ul">
+						<li class="first"><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />收费业务</a></li>
+						<li><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />学生管理</a></li>
+						<li><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />综合业务</a></li>
+						<li><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />业务管理</a></li>
+						<li><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />人员管理</a></li>
+						<li><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />系统设置类</a></li>
+						<li class="last"><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-folder-16" alt="" />常用分类</a></li>
+					</ul>
+
+
+		</div>
+	</div>
+	<div class="popup-bottom"><span class="point sprite"></span><div class="m"><div class="edge"></div></div><i class="sprite"></i><s class="sprite"></s></div>
+</div>
+
+</div>
+
+
+</body>
+</html>

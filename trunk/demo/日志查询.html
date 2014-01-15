@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>日志查询</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+
+//数据列表
+if ($.fn.pagination){
+	$.fn.pagination.defaults.beforePageText = '第';
+	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+}
+
+$('#tt').datagrid({
+	loadMsg:'加载数据...',
+	url: 'data/data12.json',
+	title: false,
+	width: "100%",
+	height: $(window).height()-322,
+	fitColumns: true,
+	nowrap:false,
+	striped:true,
+	fit:true,
+	pagination:true,
+	rownumbers:true,
+	columns:[[
+		{field:'name',title:'时间',width:80},
+		{field:'apiurl',title:'用户',width:120},
+		{field:'count',title:'操作内容',width:200},
+		{field:'ip',title:'操作IP',width:80}
+	]]
+});
+
+//日期
+$('#data1').datebox({
+    width:"120",panelWidth:"220",value:"起始日期",onSelect:function(){alert($(this).attr("id"))},border:false
+}); 
+$('#data2').datebox({
+    width:120,panelWidth:220,value:"结束日期"
+}); 
+
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+		
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="清空日志" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />清空日志</span><s></s></a>
+	<a class="button btn-back" title="导出日志" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-exp" alt="" />导出日志</span><s></s></a>
+	<a class="button btn-back" title="打印日志" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-print" alt="" />打印日志</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- 列表 -->
+
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dd><input type="text" id="data1" class="dateLable" /></dd>
+			<dd><input type="text" id="data2" class="dateLable" /></dd>
+			<dd><select class="select" style="width:150px;"><option>选择操作员</option><option>Admin</option><option>Synjones</option><option>Kjji</option></select></dd>
+			<dd><a class="button btn-save" title="统计" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-zoomlight" alt="" />查询&nbsp;</span><s></s></a></dd>
+		</dl>
+	</div>
+</div>
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+<!-- 列表 End -->
+	</div>
+	
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>人员授权</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$('#tt').datagrid({
+	loadMsg:'加载数据...',
+	url: 'data/data15.json',
+	title: false,
+	width: "auto",
+	fit: true,
+	fitColumns: true,
+	nowrap:false,
+	striped:true,
+	pagination:true,
+	frozenColumns:[[
+		{field:'ck',checkbox:true}
+	]],
+	columns:[[
+		{field:'number',title:'学号',width:80},
+		{field:'name',title:'姓名',width:80},
+		{field:'sex',title:'性别',width:40,align:"center",
+			formatter:function(value,rowData,rowIndex){
+				if(rowData.sex == '1')
+					return "男";
+				else
+					return "女";
+			}
+		},
+		{field:'identity',title:'身份',width:80},
+		{field:'faculty',title:'所属院系',width:140},
+		{field:'action',title:'授权',width:40,align:"center",
+		formatter:function(value,rowData,rowIndex){
+			return '<a href="用户授权_人员授权_权限设置.html" title="设置"><img src="themes/default/images/blank.gif" class="icon ico-addlimit" alt="设置" /></a>';
+		}},
+		{field:'edit',title:'详细',width:40,align:"center",
+		formatter:function(value,rowData,rowIndex){
+			return '<a href="#" title="查看"><img src="themes/default/images/blank.gif" class="icon ico-view" alt="查看" /></a>';
+		}}
+	]],
+	toolbar:[{
+		id:'checkone',
+		text:'<img src="themes/default/images/blank.gif" class="icon ico-check" alt="" />授权选中',
+		//iconCls:'icon-add',
+		handler:function(){
+			$('#btnsave').linkbutton('enable');
+			alert('确定授权吗？')
+		}
+	},'-',{
+		id:'checkall',
+		text:'<img src="themes/default/images/blank.gif" class="icon ico-yes" alt="" />授权所有',
+	//	iconCls:'icon-cut',
+		handler:function(){
+			$('#btnsave').linkbutton('enable');
+			alert('授权中...')
+		}
+	}]
+});
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="#"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="添加岗位" href="用户授权_添加岗位.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加岗位</span><s></s></a>
+		<a class="button btn-back btn-current" title="用户授权" href="用户授权_人员授权.html"><i></i><span>用户授权</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-query" alt="" /><strong>人员授权</strong></div></div>
+	
+	<!-- 信息Form -->
+	<div class="tabContent">
+
+		<ul class="expand-item-ul">
+			<li><dl><dt>学号/工号</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li><dl><dt>姓 名</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+			<li style="margin-top:-5px;">
+				<a class="button btn-save" title="查询" id="confirm" style="margin-top:1px;"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-zoomlight" alt="" />查 询</span><s></s></a>
+				<!--
+				<a class="button btn-back" title="授权选中" href="#"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-check" alt="" />授权选中</span><s></s></a>
+				<a class="button btn-back" title="授权所有" href="#"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-yes" alt="" />授权所有</span><s></s></a>
+				-->
+				<a class="button btn-back" title="高级查询" href="#"><i></i><span>高级查询</span><s></s></a>
+			</li>
+		</ul>
+		
+	</div>
+	
+	<!-- 信息Form End -->
+
+	<!-- 系统列表 -->
+	<div class="datagrid-wrap">
+		<table id="tt"></table>
+	</div>
+	<!-- 系统列表 End -->
+
+<br/>
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户审核</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+//用户列表
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data6.json',
+				title: false,
+				width: "100%",
+				fit: true,
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				pagination:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'number',title:'学号',width:80},
+					{field:'name',title:'姓名',width:80},
+					{field:'sex',title:'性别',width:120,formatter:function(value,rowData,rowIndex){
+						if(value=="1")
+							return '男';
+						else if(value=='2')
+							return '女';
+						else
+							return '-';
+					}},
+					{field:'identity',title:'身份',width:80},
+					{field:'faculty',title:'所属院系',width:250},
+					{field:'status',title:'审核状态',width:80,formatter:function(value,rowData,index){
+						if(value=='0')
+							return '<span style="color:red">未审核</span>';
+						else
+							return '<span style="color:green">已审核</span>';
+					}},
+					{field:'action',title:'操作',width:80,align:"center",
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="javascript:uncheck();" title="拒绝"><img src="themes/default/images/blank.gif" class="icon ico-no" alt="拒绝" /></a> <a href="#" title="审核"><img src="themes/default/images/blank.gif" class="icon ico-check" alt="审核" /></a> <a href="用户审核_详细.html" title="详情"><img src="themes/default/images/blank.gif" class="icon ico-view" alt="详情" /></a>';
+					}}
+				]]
+			});
+
+
+//拒绝审核
+$("#uncheckAll").click(function(){
+	$('#dialog-uncheck').dialog('open');
+})
+
+$('#dialog-uncheck').dialog({
+    title: '批量拒绝',  
+    width: 350,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true
+});
+
+$('#dialog-uncheck-single').dialog({
+    title: '拒绝',  
+    width: 600,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true
+});
+
+});
+//拒绝审核
+function uncheck(){
+	$('#dialog-uncheck-single').dialog('open');
+}
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+	</div>
+	<div class="hr"></div>
+	
+	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-check" alt="" /><strong>用户审核</strong></div></div>
+
+		<!-- 信息Form -->
+		<div class="userinfo-form">
+			<div class="tabContent" id="exinfomation" style="border-top:1px solid #ccc;">
+
+				<ul class="expand-item-ul" id="expand-content">
+					<li><dl><dt>学号/工号</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+					<li><dl><dt>姓名</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+					<li><dl><dt>操作日期</dt>
+					<dd><input type="text" name="startdate" id="startdate" class="textinput_s easyui-datebox" style="width:105px;" /> - <input type="text" class="textinput_s easyui-datebox" name="enddate" id="enddate" style="width:105px;" /></dd>
+					</dl></li>
+					<li><dl><dt>审核状态</dt><dd><select><option>全部</option><option>未审核</option><option>已审核</option></select></dd></dl></li>
+					<li><dl><dt>学院</dt><dd><select><option>计算机信息与应用</option><option>昆虫达人</option><option>法学</option></select></dd></dl></li>
+					<li><dl><dt>身份</dt><dd><input type="text" class="textinput_s" /></dd></dl></li>
+					
+				</ul>
+				
+			</div>
+			
+			<div style="height:40px;padding:15px 0 0 0;">
+				<a class="button btn-save" title="查询" id="confirm" style="margin-top:1px;"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-zoomlight" alt="" />查 询</span><s></s></a>
+				<a class="button btn-back" title="批量审核"><i></i><span>批量审核</span><s></s></a>
+				<a class="button btn-back" title="批量拒绝" id="uncheckAll"><i></i><span>拒绝</span><s></s></a>
+			</div>
+		</div>
+		<!-- 信息Form End -->
+
+
+<div class="datagrid-wrap">
+
+		<!-- 系统列表 -->
+
+	<table id="tt"></table>
+
+		<!-- 系统列表 End -->
+
+</div>
+
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 批量拒绝 -->
+<div id="dialog-uncheck">
+		<div class="d-tips">请输入拒绝原因!</div>
+		<div class="d-innerbox">
+		<p style="padding:0 0 5px;">备注：</p>
+		<p><textarea cols="36"></textarea></p>
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+</div>
+<!-- 批量拒绝 End -->
+
+<!-- 拒绝 -->
+<div id="dialog-uncheck-single">
+		<div class="d-innerbox">
+<div class="batch-fieldchange-panel" style="display:block;padding:0;border:0;">
+
+		<h4><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />请选择拒绝项</h4>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />姓名</li>
+			<li><input type="checkbox" class="checkbox" />性别</li>
+			<li><input type="checkbox" class="checkbox" />出生日期</li>
+			<li><input type="checkbox" class="checkbox" />学号/工号</li>
+			<li><input type="checkbox" class="checkbox" />证件类别</li>
+			<li><input type="checkbox" class="checkbox" />进校日期</li>
+			<li><input type="checkbox" class="checkbox" />部门</li>
+			<li><input type="checkbox" class="checkbox" />住址</li>
+			<li><input type="checkbox" class="checkbox" />国家/地区</li>
+			<li><input type="checkbox" class="checkbox" />民族</li>
+			<li><input type="checkbox" class="checkbox" />政治面貌</li>
+			<li><input type="checkbox" class="checkbox" />电子邮件</li>
+			<li><input type="checkbox" class="checkbox" />籍贯</li>
+			<li><input type="checkbox" class="checkbox" />身份类别</li>
+			<li><input type="checkbox" class="checkbox" />证件号码</li>
+			<li><input type="checkbox" class="checkbox" />邮政编码</li>
+			<li><input type="checkbox" class="checkbox" />联系电话</li>
+			<li><input type="checkbox" class="checkbox" />有效日期 </li>
+		</ul>
+		
+		<dl class="panel-foot">
+			<dt><input type="checkbox" class="checkbox" id="checkall" /><label for="checkall">全选</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="uncheckall" /><label for="uncheckall">反选</label></dt>
+		</dl>
+
+		</div>
+		<div class="d-button-row"><a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+</div>
+<!-- 拒绝 End -->
+
+
+</body>
+</html>

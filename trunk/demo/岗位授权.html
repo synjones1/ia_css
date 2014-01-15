@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>岗位授权</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#sys-create").click(function(){
+	new Dialog(loader("提交数据..."),{
+	time:1000,
+	showTitle:false,
+	afterClose:function(){
+		dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false,width:'400'});
+		dlg.show();
+		$(".dialog-close,#confirm").click(function(){dlg.hide();});
+	}
+	})
+	.show();
+})
+
+
+			$('#tt2').tree({
+				checkbox: true,
+				url: 'data/tree_data1.json',
+				onClick:function(node){
+					$(this).tree('toggle', node.target);
+					//alert('you click '+node.text);
+				},
+				onContextMenu: function(e, node){
+					e.preventDefault();
+					$('#tt2').tree('select', node.target);
+					$('#mm').menu('show', {
+						left: e.pageX,
+						top: e.pageY
+					});
+				}
+			});
+
+$(".tablegrid .tbody tr").hover(function(){
+	$(this).addClass("trhover");
+},function(){
+	$(this).removeClass("trhover");
+})
+})
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- 系统注册 -->
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="添加岗位"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加岗位</span><s></s></a>
+	<a class="button btn-back btn-current" title="用户授权" href="用户授权_人员授权.html"><i></i><span>岗位授权</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+
+<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>岗位授权</strong></div><i class="sprite"></i></div>
+
+<div class="formdiv">
+	<div class="box">
+		<form id="roluForme" name="roluForme" action="">
+			<div class="repeat table-head"><div>基本设置</div></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="150">岗位名称：</th>
+				<td>系统工程师</td>
+			</tr>
+
+			<tr>
+				<th width="150">分配角色：</th>
+				<td style="padding:0 1px 0 1px;">
+					
+<div id="show-batchbox" class="batch-fieldchange-panel" style="display:block;border:0;">
+	<div class="box" style="background-color:#fff;">
+		<h4>角色列表</h4>
+		<ul>
+			<li><input type="checkbox" class="checkbox" />超级管理员</li>
+			<li><input type="checkbox" class="checkbox" />系统管理</li>
+			<li><input type="checkbox" class="checkbox" />角色测试</li>
+			<li><input type="checkbox" class="checkbox" />系统维护</li>
+			<li><input type="checkbox" class="checkbox" />系统编辑管理</li>
+			<li><input type="checkbox" class="checkbox" />新管理员</li>
+			<li><input type="checkbox" class="checkbox" />产需求量真是地直</li>
+			<li><input type="checkbox" class="checkbox" />角色角色角色</li>
+			<li><input type="checkbox" class="checkbox" />迎新学费操作员</li>
+			<li><input type="checkbox" class="checkbox" />工本费操作员</li>
+			<li><input type="checkbox" class="checkbox" />业务操作员</li>
+			<li><input type="checkbox" class="checkbox" />学费操作员</li>
+			<li><input type="checkbox" class="checkbox" />收费操作员</li>
+			<li><input type="checkbox" class="checkbox" />票据管理员</li>
+			<li><input type="checkbox" class="checkbox" />超级管理员</li>
+			<li><input type="checkbox" class="checkbox" />业务操作员</li>
+			<li><input type="checkbox" class="checkbox" />系统管理</li>
+			<li><input type="checkbox" class="checkbox" />业务操作员 </li>
+			<li><input type="checkbox" class="checkbox" />工本费操作员</li>
+			<li><input type="checkbox" class="checkbox" />超级管理员</li>
+			<li><input type="checkbox" class="checkbox" />出生日期</li>
+			<li><input type="checkbox" class="checkbox" />学号/工号</li>
+			<li><input type="checkbox" class="checkbox" />系统编辑管理</li>
+			<li><input type="checkbox" class="checkbox" />超级管理员</li>
+
+			<li><input type="checkbox" class="checkbox" />密码修改</li>
+		</ul>
+		<dl class="panel-foot">
+			<dt style="width:auto;padding-left:6px;"><input type="checkbox" class="checkbox" id="checkall" /><label for="checkall">全选</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="checkbox" id="uncheckall" /><label for="uncheckall">反选</label></dt>
+		</dl>
+	</div>
+</div>					
+				</td>
+			</tr>
+			
+
+			
+			<tr>
+				<th height="80">&nbsp;</th>
+				<td>
+					<a class="button btn-save" href="用户授权_岗位管理.html" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a>
+					<a class="button btn-save" title="重置"><i></i><span>重 置&nbsp;</span><s></s></a>
+				</td>
+			</tr>
+			</tbody>
+			</table>
+			
+		</form>
+	</div>
+</div>
+<!-- Form End -->
+<!-- 系统注册End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+
+</body>
+</html>

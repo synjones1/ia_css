@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>字典维护</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+/* 语言 */
+if ($.fn.pagination){
+	$.fn.pagination.defaults.beforePageText = '第';
+	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+}
+
+if($.browser.msie)
+	var gridWidth = $(window).width()-362;
+else
+	var gridWidth = $(window).width()-379;
+
+$('#tt').treegrid({
+	title:"字典列表",
+	iconCls:"icon-menu-title",
+	url:"data/treegrid2.json",
+	width:"100%",
+	idField:"id",
+	treeField:"code",
+	fit:true,
+	fitColumns:true,
+	rownumbers: false,
+	singleSelect:false,
+	collapsible: false,
+	frozenColumns:[[
+		{field:'ck',checkbox:true}
+	]],
+	columns:[[
+		{field:'code',title:'名称',width:150,editor:"text"},
+		{field:'name',title:'代码',width:200,editor:"text"},
+		{field:'addr',title:'启用状态',width:150,editor:"text"},
+		{field:'col4',title:'排序',width:150,
+	        formatter:function(value){
+	        	return '<a href="#"><img src="themes/default/images/blank.gif" class="icon ico-up" alt="" /></a> <a href="#"><img src="themes/default/images/blank.gif" class="icon ico-down" alt="" /></a>';
+	        }
+	     }
+	]]
+})
+	
+//分类高度控制
+	function catFixHeight(){
+		if($(window).height() < 664){
+			$(".categories .box").height($(".system-list-div").height()-40);
+		}else{
+			$(".categories .box").height($(".system-list-div").height()-40);
+		}
+	}
+	$(window).load(catFixHeight).resize(catFixHeight);
+
+
+
+
+//下拉选择字典
+$('#cc').combobox({
+	editable:false,
+	width:340,
+	panelHeight:313,
+	required:true
+});
+
+});
+
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+	
+		<div class="toolsbar">
+			<div style="padding:1px 10px 0 0;float:left;">
+				<select id="cc" name="state">
+					<option value="AL">请选择要维护的字典</option>
+					<option value="AK">校/厂区</option>
+					<option value="AZ">部门信息</option>
+					<option value="AR">身份类别</option>
+					<option value="CA">操作员信息</option>
+					<option value="CO">国家/地区信息</option>
+					<option value="CT">民族信息</option>
+					<option value="DE">政治面貌</option>
+					<option value="FL">证件类型</option>
+				</select>
+				<a href="" class="inside-icon"><img src="themes/default/images/blank.gif" class="icon ico-del" alt="" /></a>
+			</div>
+			<a class="button btn-save" title="查询" type="button"><i></i><span>查询</span><s></s></a>
+			<span class="toolsbar-tips red_low"><img src="themes/default/images/blank.gif" class="icon ico-info" alt="" />可以通过点击字典代码，查看指定字典数据</span>
+		</div>
+		<div class="hr"></div>
+
+		<div class="dictionarydiv">
+		<!-- 分类 -->
+			<div class="categories">
+				<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>添加数据</strong></div><i class="sprite"></i></div>
+				<div class="box">
+					<div class="formdiv dictionary-form">
+						<dl>
+							<dt>代码：</dt>
+							<dd><input type="text" class="textinput" style="width:200px;" /><div style="padding-top:4px;"><input type="checkbox" class="checkbox" id="dds" /><label for="dds">自动生成</label></div></dd>
+						</dl>
+						<dl>
+							<dt>名称：</dt>
+							<dd><input type="text" class="textinput" style="width:200px;" /></dd>
+						</dl>
+						<dl>
+							<dt>排序：</dt>
+							<dd><input type="text" class="textinput" style="width:200px;" /></dd>
+						</dl>
+						<dl>
+							<dt></dt>
+							<dd><a class="button btn-save" title="确定" type="button"><i></i><span>确 定</span><s></s></a></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		<!-- 分类 End -->
+
+		<!-- 数据列表 -->
+			<div class="system-list-div">
+			
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dd>
+			<a class="button btn-back" title="编辑"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />编辑</span><s></s></a>
+			<a class="button btn-back" title="删除"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</span><s></s></a>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+<div class="datagrid-wrap">
+			<table id="tt"></table>
+</div>
+			</div>
+		<!-- 数据列表 End -->
+		</div>
+
+	</div>
+	
+<!-- 对话框 -->
+<div id="dialog-uncheck" style="display:none;">
+<div class="dialogbox" style="width:600px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">添加系统</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+		
+	<div class="item-row-scroll">
+	
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-1.png" width="48" alt=""/></dd>
+				<dt class="name">选课管理系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-add" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-2.png" width="48" alt=""/></dd>
+				<dt class="name">收费系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">监控系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-add" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-4.png" width="48" alt=""/></dd>
+				<dt class="name">场馆系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">门禁系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+			<dl class="item-row-dl">
+				<dd class="image"><img src="images/item-3.png" width="48" alt=""/></dd>
+				<dt class="name">门禁系统</dt>
+				<dd class="action"><input type="image" src="themes/default/images/blank.gif" class="button btn-unadd" alt="添加" /></dd>
+			</dl>
+	</div>
+			
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+<!-- 对话框 -->
+<div id="dialog-newCategroies" style="display:none;">
+<div class="dialogbox" style="width:400px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">添加分类</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<div class="d-innerbox">
+			<p><input type="input" class="textinput" style="width:98%" /></p>
+			</div>
+			<div style="height:40px;padding:20px 0 6px 10px">
+				<a class="button btn-save" title="确定" id="confirm"><i></i><span>确 定&nbsp;</span><s></s></a>
+			</div>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

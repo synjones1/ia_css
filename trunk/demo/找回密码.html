@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>找回密码</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+$("#sys-create").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{
+	showTitle:false,
+	afterClose:function(){
+		$(".current").removeClass().addClass("passed").next().addClass("passed").prev().find(".excision").addClass("has-excision").parent().next().find(".excision").addClass("has-excision-last").parent().next().addClass("current");
+		$("#setup-1").hide();
+		$("#setup-2").show();
+	}
+	});
+	dlg.show();
+		$(".dialog-close").click(function(){
+			dlg.hide();
+		});
+		$(".dlg-confirm").click(function(){
+			dlg.close();
+		
+		});
+})
+
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+<br/>
+<!-- 步骤 -->
+<div class="setupdiv">
+	<ul>
+		<li class="current">第一步：输入用户/Email地址<span class="sprite excision"></span></li>
+		<li>第二步：查收邮件<span class="sprite excision"></span></li>
+		<li>第三步：输入您的新密码<span class="last-span"></span></li>
+	</ul>
+</div>
+<!-- 步骤End -->
+
+<!-- Form -->
+
+<br/>
+<div class="formdiv">
+	<div class="box">
+			<div class="repeat table-head"></div>
+			
+			<!-- setup 1 -->
+			<div id="setup-1">
+		<form id="roluForme" name="roluForme" action="">
+			
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th>输入用户帐号：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>输入Email地址：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>验证码：</th>
+				<td><ul class="sysname"><li><input style="width:100px;" class="textinput" type="text" /></li><li style="padding:0 4px;"><img src="images/typecode.jpg" alt="验证码" height="32"/></li><li class="sys-icon-msg"><a href="#">换一张</a></li></td>
+			</tr>
+			
+
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<a class="button btn-save" id="sys-create" title="下一步"><i></i><span>下一步&nbsp;</span><s></s></a>
+					<br/>
+					<br/>
+					<br/>
+					<br/><br/>
+					<br/><br/>
+					<br/><br/>
+					<br/><br/>
+<br/>
+
+				</td>
+			</tr>
+			</tbody>
+			</table>
+			
+		</form>
+		</div>
+		<!-- setup 1 End -->
+		
+		<!-- setup 3 -->
+		<div id="setup-2" style="display:none;">
+		<form id="roluForme" name="roluForme" action="">
+			
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th>输入密码：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>确认密码：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			
+
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<a class="button btn-save" id="" title="确 认"><i></i><span>确 认&nbsp;</span><s></s></a>
+					<br/>
+					<br/>
+					<br/>
+					<br/><br/>
+					<br/><br/>
+					<br/><br/>
+					<br/><br/>
+<br/><br/><br/>
+
+				</td>
+			</tr>
+			</tbody>
+			</table>
+			
+		</form>
+		</div>
+		<!-- setup 3 End -->
+		
+		
+	</div>
+</div>
+<!-- Form End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" /></td>
+					<td>您的信息已发送至您的邮箱。<br/>为了确保帐户安全，10分钟后此邮件失效。</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><br/><a class="button btn-small dlg-confirm" title="查收邮件"><i></i><span>查收邮件&nbsp;</span><s></s></a>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

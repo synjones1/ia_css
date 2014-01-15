@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>扩展信息维护</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.tinyscrollbar.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$.ajaxSetup ({
+	    cache: false
+	});
+/* 语言 */
+if ($.fn.pagination){
+	$.fn.pagination.defaults.beforePageText = '第';
+	$.fn.pagination.defaults.afterPageText = '共{pages}页';
+	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+}
+
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data9.json',
+				title: false,
+				width: "auto",
+				fit: true,
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				pagination:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'Key',title:'属性KEY',width:80},
+					{field:'default',title:'属性默认值',width:80},
+					{field:'apiurl',title:'属性对应字典',width:120},
+					{field:'action',title:'操作',width:50,
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="#" title="编辑"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="编辑" /></a> <a title="删除"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="删除" /></a>';
+					}}
+				]]
+			});
+			
+//下拉选择字典
+$('#cc,#cc2').combobox({
+	editable:false,
+	width:194,
+	panelHeight:313
+});
+
+//弹出treegrid
+$('#add-exinfo').dialog({
+    title: '添加扩展信息',  
+    width: 600,
+    height: "auto",
+    closed: true,
+    cache: false,
+    modal: true,
+    onOpen:function(){
+		$('#cc2').combobox({width:390});
+    	
+    }
+});  
+$("#btn-addexinfo").click(function(){
+	$('#add-exinfo').dialog('open');
+})
+
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+		
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="添加扩展信息" id="btn-addexinfo"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />添加扩展信息</span><s></s></a>
+	<a class="button btn-back" title="批量删除" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />批量删除</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- 列表 -->
+<div class="repeat searchdiv">
+	<div class="box">
+		<dl>
+			<dd>
+				<select id="cc" name="state">
+					<option value="AL">请选择要维护的字典</option>
+					<option value="AK">校/厂区</option>
+					<option value="AZ">部门信息</option>
+					<option value="AR">身份类别</option>
+					<option value="CA">操作员信息</option>
+					<option value="CO">国家/地区信息</option>
+					<option value="CT">民族信息</option>
+					<option value="DE">政治面貌</option>
+					<option value="FL">证件类型</option>
+				</select>
+			</dd>
+			<dd><a class="button btn-save" title="查询" type="button"><i></i><span>查 询&nbsp;</span><s></s></a></dd>
+		</dl>
+	</div>
+</div>
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+<!-- 列表 End -->
+	</div>
+	
+	
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+
+<div id="add-exinfo">
+		<form id="roluForme" name="roluForme" action="">
+			<table cellspacing="0" cellpadding="10" class="formtable" style="border:0;">
+			<tbody>
+			<tr>
+				<th width="120" style="border-top:0;">属性Key：</th>
+				<td style="border-top:0;"><input style="width: 380px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>默认值：</th>
+				<td><input style="width: 380px;" class="textinput" type="text"/></td>
+			</tr>
+			
+			<tr>
+				<th>属性对应字典：</th>
+				<td>
+				<select id="cc2" name="state">
+					<option value="AL">请选择要维护的字典</option>
+					<option value="AK">校/厂区</option>
+					<option value="AZ">部门信息</option>
+					<option value="AR">身份类别</option>
+					<option value="CA">操作员信息</option>
+					<option value="CO">国家/地区信息</option>
+					<option value="CT">民族信息</option>
+					<option value="DE">政治面貌</option>
+					<option value="FL">证件类型</option>
+				</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td><div class="formtips" style="width:390px;"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-tips" alt="" />提示信息，提示信息！</div></td>
+			</tr>			
+			<tr>
+				<th style="border-bottom:0;">&nbsp;</th>
+				<td style="border-bottom:0;"><br/>
+					<div><a class="button btn-save" id="sys-create" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+				</td>
+			</tr>
+		
+			
+			</tbody>
+			</table>
+			
+		</form>
+</div>
+
+
+</body>
+</html>

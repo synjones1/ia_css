@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户信息查询详细</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	function profileLoad(){
+		$(".mainlrofile").width($("#content").width()-$(".side-profile").width()-100);
+	}
+	
+	$(window).load(function(){
+		profileLoad();
+	//	$('.tabContent').height($(window).height()-320);
+		if($('.side-profile').height() < $('.tabContent').height()){
+			$('.side-profile').height($('.tabContent').height()+10);
+		}else{
+			$('.tabContent').height($('.side-profile').height());
+		}
+		
+	}).resize(function(){
+		profileLoad();
+	//	$('.tabContent').height($(window).height()-320);
+		$('.side-profile').height($(window).height()-310);
+	});
+
+	$(".tabdiv li").each(function(i,k){
+		$(k).click(function(){
+			$(".tabdiv li").removeClass();
+			$(k).addClass("active");
+			$('.tabContent').hide();
+			$('#'+$(k).find('a').attr('rel')).show();
+		})
+	})
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="用户信息查询.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="新增用户" href="新增用户.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />新增用户</span><s></s></a>
+		<a class="button btn-back" title="文件导入" id="change-email"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-import" alt="" />文件导入</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+	<!-- 基本信息 -->
+<div class="formdiv baseinfodiv">
+	<div class="box">
+		<div class="side-profile">
+		<ul>
+			<li><img src="images/8.jpg" alt="头像" class="avatar" width="150" /></li>
+		</ul>
+		</div>
+		<div class="mainlrofile">
+			<div class="tabdiv">
+				<ul class="repeat">
+					<li class="active"><a href="javascript:void(0)" rel="baseinfo"><i class="sprite"></i><span class="repeat">基本信息</span><s class="sprite"></s></a></li>
+					<li><a href="#" rel="exinfomation"><i class="sprite"></i><span class="repeat">扩展信息</span><s class="sprite"></s></a></li>
+				</ul>
+			</div>
+			<div id="baseinfo" class="tabContent">
+<!-- Form -->
+
+
+<div class="formdiv" style="padding:0;margin-top:0;margin-bottom:0;">
+	<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="14%">出生日期：</th><td width="36%">2012年12月31号</td>
+				<th width="14%">证件类型：</th><td width="36%">XB证</td>
+			</tr>
+			
+			<tr>
+				<th>进校日期：</th><td>2013年01月01号</td>
+				<th>住止：</th><td>这里的某个地方000号</td>
+			</tr>
+			
+			<tr>
+				<th>电子邮件：</th><td>20130101@yuena.com</td>
+				<th>政治面貌：</th><td>逃犯</td>
+			</tr>
+			
+			<tr>
+				<th>证件号码：</th><td>128387110838380308</td>
+				<th>身份类别：</th><td>儿童</td>
+			</tr>
+			
+			<tr>
+				<th>部门：</th><td>学校后勤管理部</td>
+				<th></th><td></td>
+			</tr>
+			<tr>
+				<th>民族：</th><td>汉</td>
+				<th></th><td></td>
+			</tr>						
+			<tr>
+				<th>籍贯：</th><td>越南</td>
+				<th></th><td></td>
+			</tr>						
+
+			<tr>
+				<th>邮政编码：</th><td>XX09393</td>
+				<th></th><td></td>
+			</tr>						
+			</tbody>
+			</table>
+			
+	</div>
+</div>
+<!-- Form End -->
+			</div>
+			
+			<div style="display:none;" class="tabContent" id="exinfomation">
+<!-- Form -->
+
+
+<div class="formdiv" style="padding:0;margin-top:0;margin-bottom:0;">
+	<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="14%">证件号码：</th><td width="36%">128387110838380308</td>
+				<th width="14%">身份类别：</th><td width="36%">儿童</td>
+			</tr>
+			
+			<tr>
+				<th>部门：</th><td>学校后勤管理部</td>
+				<th></th><td></td>
+			</tr>
+			<tr>
+				<th>民族：</th><td>汉</td>
+				<th></th><td></td>
+			</tr>						
+			<tr>
+				<th>籍贯：</th><td>越南</td>
+				<th></th><td></td>
+			</tr>						
+
+			<tr>
+				<th>邮政编码：</th><td>XX09393</td>
+				<th></th><td></td>
+			</tr>						
+			</tbody>
+			</table>
+			
+	</div>
+</div>
+<!-- Form End -->
+			</div>
+
+		</div>
+		
+		<div class="clearfix"></div>
+	</div>
+
+</div>
+	<!-- 基本信息 End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

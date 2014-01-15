@@ -1,0 +1,419 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统注册</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery-powerFloat-min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+//添加选项卡
+var index = 0;
+function addTab(obj,val){
+	$('#tb').show();
+	index++;
+	$('#tb').tabs('add',{
+		title:val,
+		content:$('#'+obj).html()
+	});
+	
+	$(".tabdiv li").each(function(i,k){
+		$(k).click(function(){
+			$(".tabdiv li").removeClass();
+			$(k).addClass("active");
+			$('.tabContent').hide();
+			$('#'+$(k).find('a').attr('rel')).show();
+		})
+	})
+	
+	$(".label-tip").each(
+		function(i,k){
+			$(k).powerFloat({width:310});
+		}
+	)
+	
+}
+		
+$(function() {
+	$("#sys-create").click(function(){
+		new Dialog(loader("提交数据..."),{
+		time:1000,
+		showTitle:false,
+		afterClose:function(){
+			dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false,width:'400'});
+			dlg.show();
+			$(".dialog-close,#confirm").click(function(){dlg.hide();});
+		}
+		})
+		.show();
+	})
+	
+})
+function customOption(){
+	$('#tt,#tf').tabs({
+	    border:false,
+	    onSelect:function(title){   
+	      //  alert(title+' is selected');   
+	    }   
+	});
+	$(".dl-list").find("input").each(function(i,k){
+		$(k).focus(function(){
+			$(k).parent().parent().addClass("hover");
+		});
+		$(k).blur(function(){
+			$(k).parent().parent().removeClass("hover");
+		});
+		
+	})
+}
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+
+<!-- 系统注册 -->
+<div class="toolsbar">
+	<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+	<span class="v-dotted-line"></span>
+	<a class="button btn-back" title="系统管理" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-manager" alt="" />系统管理</span><s></s></a>
+</div>
+<div class="hr"></div>
+
+<!-- Form -->
+
+<div class="head"><s class="sprite"></s><div class="head-box repeat"><strong>系统注册</strong></div><i class="sprite"></i></div>
+
+		<form id="roluForme" name="roluForme" action="">
+<div class="formdiv">
+	<div class="box">
+			<div class="repeat table-head"></div>
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+			<tr>
+				<th width="160">系统名称：</th>
+				<td><ul class="sysname"><li><input style="width: 310px;" class="textinput" type="text"/></li><li class="sys-icon"><img src="images/item-1.png" width="36" alt=""/></li><li><a class="button btn-save" title="注册"><i></i><span>上传图标&nbsp;</span><s></s></a></li><li class="sys-icon-msg"><img src="themes/default/images/blank.gif" class="icon ico-info" alt="" />图标不要通超过128x128像素</li></ul></td>
+			</tr>
+			
+			<tr>
+				<th>系统编码：</th>
+				<td><input style="width: 310px;" class="textinput" type="text"/></td>
+			</tr>
+			<tr>
+				<th>系统描述：</th>
+				<td><textarea cols="60" rows="6"></textarea></td>
+			</tr>
+			<tr>
+				<th>&nbsp;</th>
+				<td><span><a href="javascript:addTab('regsystemp-div','系统认证')" style="color:#124372;"><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" style="margin-top:-3px;" />增加系统认证</a></span><span style="padding-left:20px;"><a href="javascript:addTab('ide-div','数据接入')" style="color:#124372;"><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" style="margin-top:-3px;" />增加数据接入</a></span></td>
+			</tr>
+
+			
+			<tr>
+				<th>&nbsp;</th>
+				<td>
+					<a class="button btn-save" id="sys-create" title="注册"><i></i><span>注 册&nbsp;</span><s></s></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<div id="tb" class="easyui-tabs" tools="#tab-tools" plain="false" fit="" style="display:none;"></div>
+		</form>
+<!-- Form End -->
+<!-- 系统注册End -->
+
+	</div>
+
+<div class="clearfix"></div>
+<br/>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+<!-- 注册认证 End -->
+<div id="regsystemp-div" style="display:none;">
+	<div class="formdiv" style="margin-top:1px;margin-bottom:0;">
+		<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+				<tr>
+					<th width="160">接口地址：</th>
+					<td><input style="width: 310px;" class="textinput" type="text"></td>
+				</tr>
+				
+				<tr>
+					<th>返回数据项：</th>
+					<td>
+					<div style="height:26px">
+					<label for="d" class="radio-label"><input type="radio" class="radio" name="b" id="d" onclick="$('#custom-return').hide();$('.custom-option').parent().removeClass('change-custom-radio');" />默认</label>
+					<label for="c" class="radio-label"><input type="radio" class="radio custom-option" name="b" id="c" onclick="$('#custom-return').show();$(this).parent().addClass('change-custom-radio');customOption();" />自定义</label>
+					</div>
+					<div id="custom-return" class="custom-option-div" style="width:500px;padding:4px 0 0;">
+						
+	<div id="tt" class="return-option-tabs" style="">  
+		<div title="基本信息" style="padding:10px 10px 0 15px;">  
+			<ul class="return-item-list">
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+			</ul>
+		</div>
+		
+		<div title="扩展信息" data-options="closable:true" style="overflow:auto;padding:10px 10px 0 15px;">  
+			<ul class="return-item-list">
+				<li><input type="checkbox" class="checkbox" />自定义用户名</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+			</ul>
+		</div>  
+
+	</div>  
+				
+		<div class="actionsetname"><a href="javascript:void(0)" onclick="$('.actionsetname').hide();$('#showsetname').show();"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />设置别名</a></div>
+<div id="showsetname" style="display:none;">
+<div class="setname-head repeat"><img src="themes/default/images/blank.gif" class="icon ico-edit" alt="" />设置别名<a href="javascript:void(0)" onclick="$('#showsetname').hide();$(this).addClass('toggle-b');$('.actionsetname').show();" class="toggle-a sprite">收起</a></div>
+<div id="show-batchbox" class="setName-panel">
+	<div class="box" style="background:#fff;padding:0;">
+		<div class="dl-list" style="padding-bottom:0;">
+			<dl>
+				<dt>卡号</dt><dt>Cardno</dt><dd><input type="text" value="son" /></dd>
+			</dl>
+			<dl>
+				<dt>证件类型</dt><dt>Idtype</dt><dd><input type="text" value="Idtype" /></dd>
+			</dl>
+			<dl>
+				<dt>出生日期</dt><dt>Dayth</dt><dd><input type="text" value="Dayth" /></dd>
+			</dl>
+			<dl>
+				<dt>籍贯</dt><dt>Jiguan</dt><dd><input type="text" value="Jiguan" /></dd>
+			</dl>		
+			<dl>
+				<dt>入校时间</dt><dt>Dayth</dt><dd><input type="text" value="Dayth" /></dd>
+			</dl>
+			<dl>
+				<dt>院系</dt><dt>Jiguan</dt><dd><input type="text" value="Jiguan" /></dd>
+			</dl>
+		</div>
+
+	</div>
+</div>
+</div>
+
+
+					</div>
+
+					</td>
+				</tr>
+				
+				<tr>
+					<th>返回类型：</th>
+					<td><select class="select" style="width: 320px;" ><option>XML</option><option>JSON</option><option>CSV</option></select></td>
+				</tr>
+					
+				<tr>
+					<th>验证身份：</th>
+					<td><select class="select" style="width: 320px;" ><option>教职工</option><option>学生</option></select></td>
+				</tr>
+								
+				<tr>
+					<th>是否绑定IP：</th>
+					<td>
+					<div style="height:26px;">
+					<label for="n" class="radio-label"><input type="radio" class="radio" name="g" id="n" onclick="$('#custom-ip').hide();$('.custom-option').parent().removeClass('change-custom-radio');" />否</label>
+					<label for="y" class="radio-label"><input type="radio" class="radio custom-option" name="g" id="y" onclick="$('#custom-ip').show();$(this).parent().addClass('change-custom-radio');" />是</label>
+					</div>
+						<div id="custom-ip" class="custom-option-div">
+						<div class="iptitle">绑定服务器IP</div>
+						<div><input style="width:250px;padding-top:5px !important;padding-bottom:5px !important;" class="textinput"/><a href="javascript:void(0)"><img src="themes/default/images/blank.gif" class="icon ico-addsmall" alt="" /></a></div>
+						<ul class="ul-iplist">
+							<li><a href="#" class="remove-ip"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a>112.208.64.176</li>
+							<li><a href="#" class="remove-ip"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" /></a>10.128.0.20</li>
+						</ul>
+						</div>
+
+					</td>
+
+				</tr>
+				
+				</tbody>
+				</table>
+				
+		</div>
+		
+	</div>
+
+</div>
+<!-- 注册认证 -->
+
+<!-- 数据接入 -->
+<div id="ide-div" style="display:none;">
+	<div class="formdiv" style="margin-top:1px;margin-bottom:0;">
+		<div class="box">
+			<table cellspacing="0" cellpadding="10" class="formtable">
+			<tbody>
+				<tr>
+					<th width="160">用户名：</th>
+					<td><input style="width: 310px;" class="textinput" type="text"></td>
+				</tr>
+				
+
+				
+				<tr>
+					<th>密码：</th>
+					<td><input style="width: 310px;" class="textinput" type="text"/></td>
+				</tr>
+							
+				<tr>
+					<th>证书有效期：</th>
+					<td>
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td style="border:0;">
+								<label for="g" class="radio-label"><input type="radio" class="radio" name="g" id="g"  />永久有效</label>
+							</td>
+							<td style="border:0;">
+								<label for="h" class="radio-label"><input type="radio" class="radio custom-option" name="g" id="h" /><input style="width: 80px;" class="textinput_s" type="text" value="1013-01-20"/></label>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="padding:4px 0 0;">
+			<div class="tabdiv">
+				<ul class="repeat">
+					<li class="active"><a href="javascript:void(0);" rel="baseinfo"><i class="sprite"></i><span class="repeat">接口1</span><s class="sprite"></s></a></li>
+					<li><a href="javascript:void(0);" rel="exinfomation"><i class="sprite"></i><span class="repeat">接口2</span><s class="sprite"></s></a></li>
+					<li><a href="javascript:void(0);" rel="uploadface"><i class="sprite"></i><span class="repeat">接口3</span><s class="sprite"></s></a></li>
+				</ul>
+			</div>
+
+			<div id="baseinfo" class="tabContent">
+			<table>
+				<tr>
+					<td width="40%" style="border:0;" valign="top">
+						<div style="padding:10px 10px 0 14px;">
+							<ul class="return-item-list">
+								<li><label class="label-tip" rel="f-1"><input type="checkbox" class="checkbox" />方法1</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法2</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法3</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法4</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法5</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法6</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法7</label></li>
+								<li><label class="label-tip"><input type="checkbox" class="checkbox" />方法8</label></li>
+							</ul>
+						</div>
+					</td>
+					<td width="60%" style="border:0;" valign="top">
+					
+						<h2 style="background-color:#e5e5e5;font-size:14px;padding:4px;">方法1</h2>
+						<div style="border:1px solid #e5e5e5;padding:10px;height:200px;">
+							<div style="height:26px">
+							<label for="a" class="radio-label"><input type="radio" class="radio" name="b" id="a" onclick="$('#custom-return-2').hide();$('.custom-option').parent().removeClass('change-custom-radio');" />默认</label>
+							<label for="b" class="radio-label"><input type="radio" class="radio custom-option" name="b" id="b" onclick="$('#custom-return-2').show();$(this).parent().addClass('change-custom-radio');customOption();" />自定义</label>
+							</div>
+							
+							
+					<div id="custom-return-2" class="custom-option-div" style="width:500px;padding:4px 0 0;">
+						
+	<div id="tf" class="return-option-tabs" style="">  
+		<div title="基本信息" style="padding:10px 10px 0 15px;">  
+			<ul class="return-item-list">
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+			</ul>
+		</div>
+		
+		<div title="扩展信息" data-options="closable:true" style="overflow:auto;padding:10px 10px 0 15px;">  
+			<ul class="return-item-list">
+				<li><input type="checkbox" class="checkbox" />自定义用户名</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />学工号</li>
+				<li><input type="checkbox" class="checkbox" />部门</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+				<li><input type="checkbox" class="checkbox" />用户ID</li>
+			</ul>
+		</div>  
+
+	</div>  
+					</div>
+							
+						</div>
+					</td>
+				<tr>
+			</table>
+
+			</div>
+
+			<div style="display:none;" class="tabContent" id="exinfomation">
+sfc
+			</div>
+
+
+			<div style="display:none;" class="tabContent" id="uploadface">
+sd			</div>
+
+
+
+        			</td>
+				</tr>
+				</tbody>
+				</table>
+
+		</div>
+		
+	</div>
+	
+	
+
+</div>
+<!-- 数据接入 End -->
+
+
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">对话框</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<p class="show-tips-info"><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" />系统注册成功，等待管理员审核！<br/><a href="main.html">返回首页</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="">继续注册</a></p>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+<div id="f-1" style="display:none;"><div  class="tooltip tooltip-bottom">鼠标移到上面，显示方法描述</div></div>
+
+</body>
+</html>

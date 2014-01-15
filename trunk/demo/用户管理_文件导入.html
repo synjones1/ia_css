@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文件导入</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+//用户列表
+			$('#tt').datagrid({
+				loadMsg:'加载数据...',
+				url: 'data/data4.json',
+				width:"100%",
+				fitColumns: true,
+				nowrap:false,
+				striped:true,
+				fit:true,
+				frozenColumns:[[
+					{field:'ck',checkbox:true}
+				]],
+				columns:[[
+					{field:'number',title:'学号',width:80},
+					{field:'name',title:'姓名',width:80},
+					{field:'sex',title:'性别',width:120,formatter:function(value,rowData,rowIndex){
+						if(value=="1")
+							return '男';
+						else if(value=='2')
+							return '女';
+						else
+							return '-';
+					}},
+					{field:'identity',title:'身份',width:80},
+					{field:'faculty',title:'所属院系',width:250},
+					{field:'action',title:'操作',width:50,
+					formatter:function(value,rowData,rowIndex){
+						return '<a href="#" title="删除"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="删除" /></a>';
+					}}
+				]],
+				toolbar:"#tb"
+			});
+			
+			
+//下拉工作表
+$('#cc').combobox({
+	editable:false,
+	width:180,
+	panelHeight:"auto"
+});
+
+});
+
+</script>
+</head>
+<body>
+<!--<div id="header">#载入头部#</div>-->
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="新增用户" href="新增用户.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-addserver" alt="" />新增用户</span><s></s></a>
+		<a class="button btn-current" title="文件导入"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-import" alt="" />文件导入</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+ 
+ 	<div class="titlediv repeat"><div class="title-inner"><img src="themes/default/images/blank.gif" class="icon ico-basic" alt="" /><strong>基础设置</strong></div></div>
+
+<div class="catdiv">
+	<div class="d-tips full-tips">支持CSV、Text、XLS文件导入，单个文件不得超过<span style="color:red">10M</span>！</div>
+			<div id="baseinfo" class="tabContent">
+			<table width="100%" cellspacing="1" class="userbaseinfo-table">
+				<col width="60"/>
+				<col width="200"/>
+				<col width="60"/>
+				<col width=""/>
+				<col width="40"/>
+				<col width=""/>
+				<tr class="erow">
+					<td><strong>身份类别</strong></td>
+					<td>
+						<input type="radio" class="radio" name="f" id="f1" /><label for="f1">学生</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" class="radio" name="f" id="f2" /><label for="f2">教工</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" class="radio" name="f" id="f3" /><label for="f3">校外</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+					<td><strong>操作类型</strong></td>
+					<td><select><option>新增</option><option>修改</option><option>删除</option></select></td>
+					<td><strong>标题</strong></td>
+					<td>
+						<input type="radio" class="radio" name="t" id="f4" /><label for="f4">无标题</label>&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" class="radio" name="t" id="f5" /><label for="f5">有标题</label>&nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6">
+						<dl class="filetype">
+							<dd><input type="file" class="textinput" style="width:422px;height:31px;" size="48" /></dd>
+							<dd>
+								<a class="button btn-simple btn-simple-b" title="上传文件" id="btnupload">上传文件</a>
+								<a class="button btn-simple btn-simple-b btn-simple-disable" title="上传文件" id="btnupload">上传文件</a>
+								<a class="button btn-simple btn-simple-b" title="导入数据库"><img src="themes/default/images/blank.gif" class="icon ico-import-light" alt="" />导入数据库</a>
+								<a class="button btn-simple btn-simple-b" title="预处理"><img src="themes/default/images/blank.gif" class="icon ico-wait-light" alt="" />预处理</a>
+								<a class="button btn-simple btn-simple-b" title="预处理"><img src="themes/default/images/blank.gif" class="icon ico-addlight" alt="" />新增列</a>
+							</dd>
+						</dl>
+					
+					</td>
+				</tr>
+			</table>
+			</div>
+</div>
+
+		<div class="toolsbar" style="padding-top:4px;">
+			<div style="padding:1px 10px 0 0;float:left;">
+				<select id="cc" name="state">
+					<option value="AL">选择工作表</option>
+					<option value="AK">Sheet1</option>
+					<option value="AZ">Sheet1</option>
+					<option value="AR">idtype</option>
+					<option value="CA">Sheet1</option>
+				</select>
+			</div>
+			<span class="toolsbar-tips">idtype.xls&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="blue">查看文件</a></span>
+		</div>
+
+<div class="datagrid-wrap">
+	<table id="tt"></table>
+</div>
+
+<div id="tb" style="padding:5px;height:auto"><img src="themes/default/images/blank.gif" class="icon ico-info" alt="" style="position:relative;top:-2px;" />请用右键操作</div>
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+</body>
+</html>

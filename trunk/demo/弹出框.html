@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邮箱管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	function profileLoad(){
+		$(".mainlrofile").width($(window).width()-$(".side-profile").width()-80);
+	}
+	$(window).load(profileLoad).resize(profileLoad);
+	
+//上传
+$("#change-email").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+
+//停用
+$("#change-stop").click(function(){
+	dlg = new Dialog({type:"id",value:"return-stop"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+
+//错误
+$("#change-error").click(function(){
+	dlg = new Dialog({type:"id",value:"return-error"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+
+//启用
+$("#change-start").click(function(){
+	dlg = new Dialog({type:"id",value:"return-start"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+
+//警告
+$("#change-warning").click(function(){
+	dlg = new Dialog({type:"id",value:"return-warning"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+
+//信息提示
+$("#change-tips").click(function(){
+	dlg = new Dialog({type:"id",value:"return-tips"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+//成功提示
+$("#change-success").click(function(){
+	dlg = new Dialog({type:"id",value:"return-success"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+});
+</script>
+</head>
+<body>
+<div id="content">
+
+<a class="button btn-simple" id="change-email">上传</a>
+<a class="button btn-simple" id="change-stop">停用</a>
+<a class="button btn-simple" id="change-start">启用</a>
+<a class="button btn-simple" id="change-error">错误提示</a>
+<a class="button btn-simple" id="change-warning">警告提示</a>
+<a class="button btn-simple" id="change-tips">信息提示</a>
+<a class="button btn-simple" id="change-success">成功提示</a>
+<div class="clearfix"></div>
+</div>
+
+<!-- 上传 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">上传</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-tips">支持JPG, PNG, GIF图片格式!</div>
+		<div class="d-innerbox">
+			<br/>
+			<p><input type="text" class="textinput" value="Jkxxxxx@hotmail.com" style="width:96%" id="abcd" /></p>
+			<br/>
+		</div>
+			<div class="d-button-row"><a class="button btn-save dlg-confirm" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 上传 End -->
+
+<!-- 停用 -->
+<div id="return-stop" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-confirm-b" alt="" /></td>
+					<td>确定要停用吗？</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br/>
+						<div class="confirm-button-arrow">
+							<a class="button btn-small dlg-confirm" title="确定"><i></i><span>确定&nbsp;</span><s></s></a>
+							<a class="button btn-small dlg-confirm" title="取消"><i></i><span>取消&nbsp;</span><s></s></a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 停用 End -->
+
+<!-- 错误 -->
+<div id="return-error" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-error-b" alt="" /></td>
+					<td>显示网页时出错，请稍后重试。</td>
+				</tr>
+
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 错误 End -->
+
+<!-- 启用 -->
+<div id="return-start" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-confirm-b" alt="" /></td>
+					<td>确定要启用此接口吗？</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br/>
+						<div class="confirm-button-arrow">
+							<a class="button btn-small dlg-confirm" title="确定"><i></i><span>确定&nbsp;</span><s></s></a>
+							<a class="button btn-small dlg-confirm" title="取消"><i></i><span>取消&nbsp;</span><s></s></a>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 启用 End -->
+
+<!-- 警告 -->
+<div id="return-warning" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">警告你</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td align="center"><img src="themes/default/images/blank.gif" class="icon ico-warning-b" alt="" /></td>
+				</tr>
+				<tr>
+					<td><div style="padding-top:4px;">警告：此信息不良，将被过滤掉！<br/><br/></div></td>
+				</tr>
+
+
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 警告 End -->
+
+
+<!-- 信息提示 -->
+<div id="return-tips" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">信息提示</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td align="center"><img src="themes/default/images/blank.gif" class="icon ico-tips-b" alt="" /></td>
+				</tr>
+				<tr>
+					<td><div style="padding-top:4px;">你没有操作此栏目权限。<br/><br/></div></td>
+				</tr>
+
+
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 信息提示 End -->
+
+<!-- 成功 -->
+<div id="return-success" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">提示信息</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<table align="center">
+				<tr>
+					<td><img src="themes/default/images/blank.gif" class="icon ico-success-b" alt="" /></td>
+					<td>信息更新成功！</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<br/>
+						<div class="confirm-button-arrow">
+							<a class="button btn-small dlg-confirm" title="确定"><i></i><span>确定&nbsp;</span><s></s></a>
+							<a class="button btn-small dlg-confirm" title="取消"><i></i><span>取消&nbsp;</span><s></s></a>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+			<br/>
+		</div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 成功 End -->
+</body>
+</html>

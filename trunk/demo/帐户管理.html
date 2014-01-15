@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帐户管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#content").css({"min-height":$(window).height()-185+"px"})
+});
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" type="button"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+	</div>
+	<div class="hr"></div>
+
+
+<div class="safeinfodiv">
+	<dl>
+		<dt><strong>安全级别：</strong><span class="orange">中级  </span></dt>
+		<dd><div class="sprite level-box level-middle">中</div></dd>
+		<dt><span class="red_low">为了帐户安全，请完善密码问题保护！</span></dt>
+	</dl>
+</div>
+
+<!-- Begin -->
+<div class="manager-account">
+	<dl>
+		<dt class="icon-row-dt"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-warning-32" alt="" /></dt>
+		<dt>信息管理</dt>
+		<dd><span class="red_low">请完善您的个人信息！</span></dd>
+		<dd class="action"><a href="个人信息.html">查看</a> | <a href="编辑信息.html">完善信息</a></dd>
+	</dl>
+	<dl>
+		<dt class="icon-row-dt"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-yes-32" alt="" /></dt>
+		<dt>邮箱管理</dt>
+		<dd>已绑定的邮箱： <span class="bind-email">je*****on@hotmail.com</span> </dd>
+		<dd class="action"><a href="邮箱管理.html">更改邮箱</a></dd>
+	</dl>
+	<dl>
+		<dt class="icon-row-dt"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-yes-32" alt="" /></dt>
+		<dt>登录密码</dt>
+		<dd>当前密码安全程度</dd>
+		<dd><div class="pwd_streng middle-streng"></div></dd>
+		<dd class="action"><a href="密码修改.html">修改密码</a></dd>
+	</dl>
+	<dl>
+		<dt class="icon-row-dt"><img src="themes/default/images/blank.gif" class="icon ico-32 ico-warning-32" alt="" /></dt>
+		<dt>密码问题</dt>
+		<dd>设置密码保护后可以通过密码问题找回</dd>
+		<dd class="action"><a href="密码问题.html">设置密保</a></dd>
+	</dl>
+</div>
+<!-- Begin Off -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>

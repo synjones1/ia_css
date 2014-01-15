@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>邮箱管理</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+	function profileLoad(){
+		$(".mainlrofile").width($(window).width()-$(".side-profile").width()-80);
+	}
+	$(window).load(profileLoad).resize(profileLoad);
+	
+//修改邮箱
+$("#change-email").click(function(){
+	dlg = new Dialog({type:"id",value:"return-sucess"},{showTitle:false});
+	dlg.show();
+		$(".dialog-close,.dlg-confirm").click(function(){
+			dlg.hide();
+		});
+})
+	
+});
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回" href="个人信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		<a class="button btn-back" title="编辑信息" href="编辑信息.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-change" alt="" />编辑信息</span><s></s></a>
+		<a class="button btn-back btn-current" title="邮箱管理" href="邮箱管理.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-email" alt="" />邮箱管理</span><s></s></a>
+		<a class="button btn-back" title="密码修改" href="密码修改.html"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-changepassword" alt="" />密码修改</span><s></s></a>
+		<a class="button btn-back" title="密码问题"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-password-faq" alt="" />密码问题</span><s></s></a>
+	</div>
+	<div class="hr"></div>
+
+	<!-- 基本信息 -->
+<div class="formdiv baseinfodiv">
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<table style="margin:0 auto;">
+	<tr>
+		<td colspan="2" align="center"><img src="themes/default/images/blank.gif" class="icon ico-bind" alt="" />已绑定<span class="bind-email">Jkxxxxx@hotmail.com</span></td>
+	</tr>
+	<tr>
+		<td width="60">&nbsp;</td>
+		<td><br/><div style="height:30px;"><a class="button btn-simple" id="change-email">修改邮箱</a></div></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><div class="tips">绑定Email地址通过邮件找回密码。</div></td>
+	</tr>
+</table>
+<br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+	<!-- 基本信息 End -->
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+<!-- 对话框 -->
+<div id="return-sucess" style="display:none;">
+<div class="dialogbox" style="width:350px;">
+	<div class="d-head"><i class="sprite"></i><div class="repeat d-head-box">修改邮箱</div><a href="javascript:void(0)" title="关闭" class="sprite dialog-close">关闭</a><s class="sprite"></s></div>
+	<div class="d-main">
+		<div class="d-innerbox">
+			<br/>
+			<p><input type="text" class="textinput" value="Jkxxxxx@hotmail.com" style="width:96%" /></p>
+			<br/>
+		</div>
+			<div class="d-button-row"><a class="button btn-save dlg-confirm" title="确定"><i></i><span>确 定&nbsp;</span><s></s></a></div>
+	</div>
+	<div class="d-bottom"><i class="sprite"></i><div class="d-bottom-box"></div><s class="sprite"></s></div>
+</div>
+</div>
+<!-- 对话框End -->
+
+</body>
+</html>

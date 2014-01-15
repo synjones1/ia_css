@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>照片采集</title>
+<link rel="stylesheet" type="text/css" href="themes/default/style.css" />
+<link rel="stylesheet" type="text/css" href="themes/default/plugins/easyui.css" />
+<script type="text/javascript" src="scripts/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="scripts/plugins/dialog.js"></script>
+<script type="text/javascript" src="scripts/plugins/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="scripts/init.js"></script>
+<script type="text/javascript">
+$(function() {
+
+	$(".upload-div").height($(window).height()-337);
+	$(".pic-list li").hover(
+	function(){
+		$(this).find(".item-check,.item-del").show();
+	},
+	function(){
+	if($(this).find("input").attr('checked')==true){
+		$(this).find(".item-del").hide();
+	}else{
+		$(this).find(".item-check,.item-del").hide();
+	}
+	})
+	$(".pic-list li").find(".item-check").toggle(function(){
+		$(this).addClass("item-checked").children("input").attr("checked",true);
+	},function(){
+		$(this).removeClass("item-checked").children("input").attr("checked",false);
+	})
+	
+//右边上传信息
+	$(".userpicbox").width($("#content").width()-386);
+	$(window).resize(function(){
+		$(".userpicbox").width($("#content").width()-386);
+	})
+	$(".upload-success-ul li:even").addClass("even");
+	$('#dd2').draggable({axis:null,handle:'#title'});
+	
+
+});
+		function test(){
+			var value = $('#p').progressbar('getValue');
+			if (value < 100){
+				value += Math.floor(Math.random() * 10);
+				$('#p').progressbar('setValue', value);
+				setTimeout(arguments.callee, 200);
+			}
+		}
+
+
+</script>
+</head>
+<body>
+<div id="header"><!--#载入头部#--></div>
+<div id="nav"><!--#载入菜单#--></div>
+<div id="content">
+
+	<div id="mainbox">
+		
+	<div class="toolsbar">
+		<a class="button btn-back" title="返回"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-back" alt="" />返回</span><s></s></a>
+		<span class="v-dotted-line"></span>
+		
+	<dl class="filetype">
+		<dt style="padding-top:10px;">文件名对应于&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" class="radio" name="f" id="f1" /><label for="f1">身份序号</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" class="radio" name="f" id="f2" /><label for="f2">学/工号</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" class="radio" name="f" id="f3" /><label for="f3">证件号码</label>&nbsp;&nbsp;&nbsp;&nbsp;
+		</dt>
+		<dd><a class="button btn-save" title="上传照片" href="javascript:test()"><i></i><span><img src="themes/default/images/blank.gif" class="icon ico-uploadpic" alt="" />上传照片</span><s></s></a></dd>
+	</dl>
+		
+	</div>
+	<div class="hr"></div>
+		
+		
+		<!-- 分类 -->
+			<div class="categories" id="dd2" style="float:right;width:340px;z-index:999;">
+				<div class="head" id="title" ><s class="sprite"></s><div class="head-box repeat"><strong>上传信息</strong></div><em class="edit" id="edit-categories"><img src="themes/default/images/blank.gif" class="icon ico-close-light" alt="" /></em><i class="sprite"></i></div>
+				<div class="box">
+					<div class="uploadinfo-div">
+						<h3><img src="themes/default/images/blank.gif" class="icon ico-yes" alt="" />成功</h3>
+						<ul class="upload-success-ul">
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />用户信息查询_批量修改.png</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />banner.png</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />backblue.gif</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />security.png</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />shutterstock_23003005.jpg</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />shutterstock_12132109.jpg</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />backblue.gif</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />security.png</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />shutterstock_23003005.jpg</li>
+							<li><img src="themes/default/images/blank.gif" class="icon ico-ok" alt="" />shutterstock_12132109.jpg</li>
+							
+						</ul>
+						<h3><img src="themes/default/images/blank.gif" class="icon ico-cacel" alt="" />失败</h3>
+						<ul class="upload-success-ul upload-error-ul" style="height:100px;">
+							<li><span class="error-tips-span">错误：未知原因</span>backblue.gif</li>
+							<li><span class="error-tips-span">错误：格式错误</span>shutterstock_12132109.jpg</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		<!-- 分类 End -->
+		
+
+		<!-- Begin -->
+		<div class="userpicbox">
+			<div class="upload-div" id="addpic">
+				<div class="centerbox">
+					<p><img src="themes/default/images/blank.gif" class="icon ico-addpic" alt="" /></p>
+					<div>
+						<table cellpadding="0" cellspacing="0" align="center">
+							<tr>
+								<td><a class="button btn-b btn-save" title="点击添加照片" href="javascript:void(0)" onclick="$('#addpic').hide();$('#viewpic').show();"><i></i><span>点击添加照片</span><s></s></a></td>
+							</tr>
+						</table>
+					</div>
+					<p>单次最多可选择 300 张照片</p>
+				</div>
+			</div>
+			
+			<!-- 照片列表 -->
+			<div  id="viewpic" style="display:none">
+			<dl class="pic-tools">
+				<dt>8张照片等待上传，共3.12M</dt>
+				<dd class="progres-dd"><div id="p" class="easyui-progressbar" style="width:500px;"></div></dd>
+				<dt><a href="#" class="blue">取消</a></dt>
+				<dd class="action-dd">
+					<dl>
+						<dt><input type="checkbox" id="all" class="checkbox" /><label for="all">全选</label></dt>					
+						<dt><a href="#"><img src="themes/default/images/blank.gif" class="icon ico-recycle" alt="" />删除</a></dt>
+					</dl>
+				</dd>
+			</dl>
+			
+			<div class="pic-list">
+				<ul>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/1.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/2.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/3.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/4.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li class="errorpic">
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<img src="images/errorpic.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>					
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/5.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/6.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/1.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/2.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="pic-outborder"></div>
+						<div class="pic-innerborder">
+							<div class="img">
+								<span class="item-check" title="选择"><input type="checkbox" name="eee" /></span>
+								<span class="item-del" title="删除">删除</span>
+								<img src="images/7.jpg" alt="" width="158" />
+								<div class="name">349094_张查理</div>
+								<div class="namemark"></div>
+							</div>
+						</div>
+					</li>
+					<li class="sprite addpic"><a href="#">继续添加图片</a></li>
+				</ul>
+			</div>
+			</div>
+			<!-- End -->
+			
+		</div>
+		<!-- End -->
+		
+	<br/>
+
+	</div>
+
+<div class="clearfix"></div>
+</div>
+
+<div id="footer"><!--#载入底部版权#--></div>
+
+</body>
+</html>
